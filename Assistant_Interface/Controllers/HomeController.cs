@@ -11,6 +11,7 @@ using static Assistant_Interface.Controllers.Utils.Utils;
 using Assistant_Interface.Data;
 using Assistant_Interface.Models.ViewModels;
 using Newtonsoft.Json;
+using OpenAI;
 
 namespace Assistant_Interface.Controllers
 {
