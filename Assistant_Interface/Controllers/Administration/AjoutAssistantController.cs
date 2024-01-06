@@ -10,7 +10,10 @@ using NLog;
 using NLog.Web;
 using OpenAI;
 using OpenAI.Assistants;
+using OpenAI.Threads;
+using System.Threading;
 using static Assistant_Interface.Controllers.Utils.Utils;
+using Message = OpenAI.Threads.Message;
 
 namespace Assistant_Interface.Controllers.Administration
 {
@@ -93,7 +96,7 @@ namespace Assistant_Interface.Controllers.Administration
                 var request = new CreateAssistantRequest(dataAjoutAssistant.ChoixModel, dataAjoutAssistant.NomAssistant,
                     dataAjoutAssistant.DescriptionAssistant, dataAjoutAssistant.InstructionAssistant);
                 var assistantOpenai = openaiApi.AssistantsEndpoint.CreateAssistantAsync(request).Result;
-                var assistant = new Assistant
+                var newAssistant = new Assistant
                 {
                     OpenAiAssisantId = assistantOpenai.Id,
                     NomAssistant = dataAjoutAssistant.NomAssistant,
@@ -105,16 +108,17 @@ namespace Assistant_Interface.Controllers.Administration
                     IdCreateurAssistant = dataAjoutAssistant.IdCreateurAssistant
                 };
 
-                _accessBddContext.Assistant.Add(assistant);
+                _accessBddContext.Assistant.Add(newAssistant);
                 _accessBddContext.SaveChanges();
+
                 transaction.Commit();
                 transaction.Dispose();
 
                 var respFormat =
                     new JsonResult(
                             "L'assistant a correctement été créé, vous allez être redirigé vers la page de configuration._" +
-                            assistant.IdAssistant)
-                        {StatusCode = StatusCodes.Status200OK};
+                            newAssistant.IdAssistant)
+                    { StatusCode = StatusCodes.Status200OK };
                 return respFormat;
             }
             catch (Exception ex)
@@ -125,7 +129,7 @@ namespace Assistant_Interface.Controllers.Administration
                 Logger.Error(ex.InnerException);
                 Logger.Error(ex.StackTrace);
                 var respFormat = new JsonResult(ex.Message)
-                    { StatusCode = StatusCodes.Status400BadRequest };
+                { StatusCode = StatusCodes.Status400BadRequest };
                 return respFormat;
             }
         }

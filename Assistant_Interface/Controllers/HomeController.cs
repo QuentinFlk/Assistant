@@ -9,6 +9,7 @@ using Assistant_Interface.Models.Session;
 using NLog.Web;
 using static Assistant_Interface.Controllers.Utils.Utils;
 using Assistant_Interface.Data;
+using Assistant_Interface.Models.ViewModels;
 using Newtonsoft.Json;
 
 namespace Assistant_Interface.Controllers
@@ -63,10 +64,53 @@ namespace Assistant_Interface.Controllers
                         HttpContext.Session.SetString("AccessViewModel",
                             JsonConvert.SerializeObject(accessViewModel));
                     }
-                    else
-                        return RedirectToAction("Index", "Home");
                 }
-                return View();
+
+                var viewModel = new AccueilViewModel();
+                var listAssistant = _accessBddContext.Assistant.Where(x => !x.IsAssistantGlobal).ToList();
+                viewModel.SetAssistantDisponible(listAssistant);
+                var sessionClient = HttpContext.Session.GetString("SesseionClient");
+                //if (sessionClient != null)
+                //{
+                //    var echangeSessionViewModel = JsonConvert.DeserializeObject<EchangeSessionViewModel>(sessionClient);
+                //    viewModel.ChoixAssistant = echangeSessionViewModel.OpenAiAssistantId;
+                //    viewModel.EchangeClientAssistant = echangeSessionViewModel.EchangeClientAssistant;
+                //    viewModel.ListEchangeClientAssistant = echangeSessionViewModel.ListEchangeClientAssistant;
+                //}
+
+                viewModel.EchangeClientAssistant = "";
+                viewModel.ListEchangeClientAssistant = new List<string>
+                {
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec cursus nec odio eget iaculis. Donec ligula dui, dignissim eget turpis vitae, " +
+                    "bibendum auctor diam. Nullam posuere odio mauris, pellentesque faucibus lacus laoreet sed. Nulla felis dui, consequat ullamcorper congue at, " +
+                    "fermentum eu neque. Ut cursus commodo neque, sit amet fermentum metus pellentesque vitae. Donec consectetur urna ac facilisis iaculis. Ut vitae purus at neque auctor interdum.",
+                    "Donec in finibus erat. Nullam et consectetur magna. Curabitur ut mauris ex. Nullam in lectus et purus tempus ultricies. Quisque gravida augue " +
+                    "in est fringilla, sed tincidunt quam interdum. Morbi pulvinar ligula non purus aliquam, non molestie tortor egestas. Sed vel imperdiet odio. " +
+                    "Mauris a neque purus. Donec efficitur diam sit amet dui egestas, quis luctus justo suscipit.",
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu euismod nisi. Duis imperdiet metus et enim bibendum consequat. Proin scelerisque " +
+                    "eget risus nec dictum. Mauris suscipit, velit sit amet ultricies eleifend, sem libero tempus leo, ut iaculis enim arcu ac odio. Curabitur ornare et " +
+                    "justo id viverra. Ut rhoncus ante nisl, n",
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec cursus nec odio eget iaculis. Donec ligula dui, dignissim eget turpis vitae, " +
+                    "bibendum auctor diam. Nullam posuere odio mauris, pellentesque faucibus lacus laoreet sed. Nulla felis dui, consequat ullamcorper congue at, " +
+                    "fermentum eu neque. Ut cursus commodo neque, sit amet fermentum metus pellentesque vitae. Donec consectetur urna ac facilisis iaculis. Ut vitae purus at neque auctor interdum.",
+                    "Donec in finibus erat. Nullam et consectetur magna. Curabitur ut mauris ex. Nullam in lectus et purus tempus ultricies. Quisque gravida augue " +
+                    "in est fringilla, sed tincidunt quam interdum. Morbi pulvinar ligula non purus aliquam, non molestie tortor egestas. Sed vel imperdiet odio. " +
+                    "Mauris a neque purus. Donec efficitur diam sit amet dui egestas, quis luctus justo suscipit.",
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu euismod nisi. Duis imperdiet metus et enim bibendum consequat. Proin scelerisque " +
+                    "eget risus nec dictum. Mauris suscipit, velit sit amet ultricies eleifend, sem libero tempus leo, ut iaculis enim arcu ac odio. Curabitur ornare et " +
+                    "justo id viverra. Ut rhoncus ante nisl, n",
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec cursus nec odio eget iaculis. Donec ligula dui, dignissim eget turpis vitae, " +
+                    "bibendum auctor diam. Nullam posuere odio mauris, pellentesque faucibus lacus laoreet sed. Nulla felis dui, consequat ullamcorper congue at, " +
+                    "fermentum eu neque. Ut cursus commodo neque, sit amet fermentum metus pellentesque vitae. Donec consectetur urna ac facilisis iaculis. Ut vitae purus at neque auctor interdum.",
+                    "Donec in finibus erat. Nullam et consectetur magna. Curabitur ut mauris ex. Nullam in lectus et purus tempus ultricies. Quisque gravida augue " +
+                    "in est fringilla, sed tincidunt quam interdum. Morbi pulvinar ligula non purus aliquam, non molestie tortor egestas. Sed vel imperdiet odio. " +
+                    "Mauris a neque purus. Donec efficitur diam sit amet dui egestas, quis luctus justo suscipit.",
+                    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras eu euismod nisi. Duis imperdiet metus et enim bibendum consequat. Proin scelerisque " +
+                    "eget risus nec dictum. Mauris suscipit, velit sit amet ultricies eleifend, sem libero tempus leo, ut iaculis enim arcu ac odio. Curabitur ornare et " +
+                    "justo id viverra. Ut rhoncus ante nisl, n"
+                };
+
+                return View(viewModel);
             }
             catch (Exception ex)
             {

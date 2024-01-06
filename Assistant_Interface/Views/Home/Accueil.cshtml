@@ -1,6 +1,65 @@
-﻿@{
+﻿@using Syncfusion.EJ2
+@using Syncfusion.EJ2.Inputs
+@model Assistant_Interface.Models.ViewModels.AccueilViewModel
+
+@{
     ViewData["Title"] = "Bienvenu chez Celia";
     var isLoggedIn = Context.User?.Identity?.IsAuthenticated ?? false;
     Layout = isLoggedIn ? "~/Views/Shared/_Layout.cshtml" : "~/Views/Shared/_LayoutEmpty.cshtml";
     var timestamp = DateTime.Now.ToString("yyyyMMddHHmmssfff");
+    var index = 0;
+    <script type="text/javascript" src="~/lib/mask-plugin/src/jquery.mask.js"></script>
+    // <script src="~/js/CA/CA-Accueil.js?@timestamp"></script>
+    <script src="~/js/CA/CA-Accueil.js"></script>
 }
+
+<div class="row">
+    <div class="col-12" style="background: white">
+        <div class="inner-partie-droite p-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-9">
+                        <div class="container-fluid px-0">
+                            <div class="row">
+                               @foreach (var item in @Model.ListEchangeClientAssistant)
+                               {
+                                   <div class="col-4">
+                                   </div>
+                                   <div class="col-8">
+                                        @Html.EJS().TextBox("item-" + index).Multiline().Value(@item).Enabled(false).Created("InitMultiLine").FloatLabelType(FloatLabelType.Auto).Render()
+                                   </div>
+                                   <div class="col-12 my-2">
+                                       <!-- vide pour mise en page -->
+                                   </div>
+                                   index++;
+                               }
+                                <div class="col-12 my-2">
+                                    <!-- vide pour mise en page -->
+                                </div>
+                                <div class="col-4">
+                                </div>
+                                <div class="col-8">
+                                    <div class="textarea-div position-relative" style="height: 100%">
+                                        @Html.LabelFor(_ => Model.EchangeClientAssistant, new { @class = "d-block label-alone-dropdownlist" })
+                                        @Html.TextAreaFor(_ => Model.EchangeClientAssistant, new { @type = "text", @id = "echangeClientAssistant", @class = "form-control input-form w-100", @style = "min-height: 200px" })
+                                        @Html.ValidationMessageFor(x => Model.EchangeClientAssistant, "", new { @class = "text-danger d-none" })
+                                    </div>
+                                </div>
+                                <div class="col-12 my-2">
+                                    <!-- vide pour mise en page -->
+                                </div>
+                                <div class="col-4">
+                                </div>
+                                <div class="col-4">
+                                    <input type="button" class="btn button-cta valide-button fa-input" id="ajout-assistant" disabled="disabled" value="&#xf0c7;&nbsp;&nbsp;Ajouter l'Assistant" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.EJS().ScriptManager()
