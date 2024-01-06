@@ -4,7 +4,7 @@
     if ($("#successAlert").length > 0) {
         $.notify($("#successAlert").text(),
             {
-                style: 'successBj360Notification',
+                style: 'successAssistantNotification',
                 autoHideDelay: 4000,
                 globalPosition: 'bottom right'
             });
@@ -14,7 +14,7 @@
     if ($("#errorAlert").length > 0) {
         $.notify($("#errorAlert").text(),
             {
-                style: 'errorBj360Notification',
+                style: 'errorAssistantNotification',
                 //autoHideDelay: 4000,
                 globalPosition: 'bottom right'
             });

@@ -1,9 +1,13 @@
 ﻿using Assistant_Bdd.Data;
+using Assistant_Interface.Data;
+using Assistant_Interface.Models.Session;
 using Assistant_Interface.Models.ViewModels;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using NLog;
 using NLog.Web;
+using static Assistant_Interface.Controllers.Utils.Utils;
 
 namespace Assistant_Interface.Controllers.Administration
 {
@@ -11,15 +15,15 @@ namespace Assistant_Interface.Controllers.Administration
     {
         private readonly AssistantContext _accessBddContext;
         private readonly IConfiguration _configuration;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly ApplicationDbContext _identityDbContext;
         protected Logger Logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 
         public GestionAssistantController(AssistantContext accessBddContext, IConfiguration configuration,
-        SignInManager<IdentityUser> signInManager)
+            ApplicationDbContext identityDbContext)
         {
             _accessBddContext = accessBddContext;
             _configuration = configuration;
-            _signInManager = signInManager;
+            _identityDbContext = identityDbContext;
         }
 
         public IActionResult Index()
@@ -27,6 +31,22 @@ namespace Assistant_Interface.Controllers.Administration
             try
             {
                 Logger.Info("Chargement de la page permettant de gérer la liste des Assistant disponible.");
+                var sessionAccess = HttpContext.Session.GetString("AccessViewModel");
+                if (sessionAccess == null)
+                {
+                    var user = User;
+                    if (user.Identity.IsAuthenticated)
+                    {
+                        var accessViewModel = GetAccessViewModel(user, _identityDbContext);
+                        if (accessViewModel == null)
+                            return RedirectToAction("Index", "Home");
+                        HttpContext.Session.SetString("AccessViewModel",
+                            JsonConvert.SerializeObject(accessViewModel));
+                    }
+                    else
+                        return RedirectToAction("Index", "Home");
+                }
+
                 var listAssistant = _accessBddContext.Assistant.ToList();
                 var viewModel = new GestionAssistantViewModel
                 {
@@ -37,7 +57,7 @@ namespace Assistant_Interface.Controllers.Administration
                 foreach (var assistant in listAssistant)
                 {
                     var item = new AssistantViewModel(assistant);
-                    var user = _signInManager.UserManager.FindByIdAsync(assistant.IdCreateurAssistant).Result;
+                    var user = _identityDbContext.Users.FirstOrDefault(x => x.Id == assistant.IdCreateurAssistant);
                     item.NomCreateurAssistant = user != null ? user.UserName : "Inconnu";
                     if (assistant.AssistantActif)
                         viewModel.ListAssistantActif.Add(item);

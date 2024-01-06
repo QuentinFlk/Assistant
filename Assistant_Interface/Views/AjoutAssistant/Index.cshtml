@@ -1,5 +1,100 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Syncfusion.EJ2
+@model Assistant_Interface.Models.ViewModels.AjoutAssistantViewModel
 @{
+    ViewData["Title"] = "Ajout d'un Assistant";
+    var timestamp = DateTime.Now.ToString("yyyyMMddHHmmssfff");
+    <script type="text/javascript" src="~/lib/mask-plugin/src/jquery.mask.js"></script>
+    // <script src="~/js/CA/CA-AjoutAssistant.js?@timestamp"></script>
+    <script src="~/js/CA/CA-AjoutAssistant.js"></script>
 }
+
+@Html.Hidden("idCreateurAssistant", @Model.IdCreateurAssistant)
+
+<div class="row">
+    <div class="col-12" style="background: white">
+        <div class="inner-partie-droite p-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <h1 class="titre-page text-left">Ajout d'un Assistant</h1>
+                    </div>
+                    <div class="col-9">
+                        <div class="container-fluid px-0">
+                            <div class="row">
+                                <div class="col-4">
+                                </div>
+                                <div class="col-4">
+                                    <div class="material-input">
+                                        @Html.EditorFor(_ => Model.NomAssistant, new
+                                            {
+                                                htmlAttributes = new
+                                                {
+                                                    @type = "text",
+                                                    @id = "nomAssistant",
+                                                    @class = "form-control input-form",
+                                                    @placeholder = "Nom de l'assistant*",
+                                                }
+                                            })
+                                        <label for="nomAssistant">Nom de l'assistant<sup style="color: var(--color-rouge)">*</sup></label>
+                                        @Html.ValidationMessageFor(x => Model.NomAssistant, "", new { @class = "text-danger d-none" })
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="position-relative">
+                                        @*@Html.LabelFor(_ => Model.ListTypeStructure, new { @class = "d-block label-alone-dropdownlist" })*@
+                                        <label for="choixModel" class="d-block label-alone-dropdownlist">Type de structure<sup style="color: var(--color-rouge)">*</sup></label>
+                                        @Html.DropDownListFor(x => x.ChoixModel, Model.ListModelDisponible,
+                                                 new { @id = "choixModel", @class = "form-control selectpicker", @title = "Sélectionner un model*", @data_size = "5" })
+                                        @Html.ValidationMessageFor(x => Model.ListModelDisponible, "", new { @class = "text-danger d-none" })
+                                    </div>
+                                </div>
+                                <div class="col-12 my-2">
+                                    <!-- vide pour mise en page -->
+                                </div>
+                                <div class="col-4">
+                                </div>
+                                <div class="col-6">
+                                    <div class="textarea-div position-relative" style="height: 100%">
+                                        @Html.LabelFor(_ => Model.DescriptionAssistant, new { @class = "d-block label-alone-dropdownlist" })
+                                        @Html.TextAreaFor(_ => Model.DescriptionAssistant, new { @type = "text", @id = "descriptionAssistant", @class = "form-control input-form w-100", @style = "min-height: 70px"})
+                                        @Html.ValidationMessageFor(x => Model.DescriptionAssistant, "", new { @class = "text-danger d-none" })
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                    <div class="toggle-flk">
+                                        @Html.LabelFor(_ => Model.IsCodeInterpreterEnable, new { @class = "label-alone label-switch d-block message-active" })
+                                        @Html.CheckBox("isCodeInterpreterEnable", Model.IsCodeInterpreterEnable, new { @id = "isCodeInterpreterEnable", @class = "switchFlk" })
+                                        <label class="label-for-checkbox" for="isCodeInterpreterEnable"></label>
+                                    </div>
+                                    @Html.ValidationMessageFor(x => Model.IsCodeInterpreterEnable, "", new { @class = "text-danger d-none" })
+                                </div>
+                                <div class="col-12 my-2">
+                                    <!-- vide pour mise en page -->
+                                </div>
+                                <div class="col-4">
+                                </div>
+                                <div class="col-8">
+                                    <div class="textarea-div position-relative" style="height: 100%">
+                                        @Html.LabelFor(_ => Model.InstructionAssistant, new { @class = "d-block label-alone-dropdownlist" })
+                                        @Html.TextAreaFor(_ => Model.InstructionAssistant, new { @type = "text", @id = "instructionAssistant", @class = "form-control input-form w-100", @style = "min-height: 200px" })
+                                        @Html.ValidationMessageFor(x => Model.InstructionAssistant, "", new { @class = "text-danger d-none" })
+                                    </div>
+                                </div>
+                                <div class="col-12 my-2">
+                                    <!-- vide pour mise en page -->
+                                </div>
+                                <div class="col-4">
+                                </div>
+                                <div class="col-4">
+                                    <input type="button" class="btn button-cta valide-button fa-input" id="ajout-assistant" disabled="disabled" value="&#xf0c7;&nbsp;&nbsp;Ajouter l'Assistant" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.EJS().ScriptManager()

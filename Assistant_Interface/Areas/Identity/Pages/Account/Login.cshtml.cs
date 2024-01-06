@@ -38,7 +38,6 @@ public class LoginModel : PageModel
     public class InputModel
     {
         [Required]
-        [EmailAddress]
         public string Email { get; set; }
 
         [Required]
@@ -92,28 +91,34 @@ public class LoginModel : PageModel
                     var idUser = _identityDbContext.Users.FirstOrDefault(x => x.UserName.Equals(Input.Email))?.Id;
                     if (idUser != null)
                     {
-                        var userHaveRole =
-                            _identityDbContext.UserRoles.FirstOrDefault(x => x.UserId.Equals(idUser));
-                        if (userHaveRole != null)
+                        var user = _identityDbContext.Users.FirstOrDefault(x => x.Id == idUser);
+                        if (user != null)
                         {
-                            var profilUser = int.Parse(userHaveRole.RoleId);
-                            var accessViewModel = new AccessViewModel
+                            var userHaveRole =
+                                _identityDbContext.UserRoles.FirstOrDefault(x => x.UserId.Equals(idUser));
+                            if (userHaveRole != null)
                             {
-                                ProfilUtilisateur = profilUser,
-                                EmailConnexion = Input.Email
-                            };
+                                var profilUser = int.Parse(userHaveRole.RoleId);
+                                var accessViewModel = new AccessViewModel
+                                {
+                                    ProfilUtilisateur = profilUser,
+                                    EmailConnexion = Input.Email,
+                                    IdConnexion = idUser,
+                                    NomConnexion = user.UserName
+                                };
 
-                            HttpContext.Session.SetString("AccessViewModel",
-                                JsonConvert.SerializeObject(accessViewModel));
-                            //TODO rediriger vers un page en fonction des droits de l'utilisateur
-                            return RedirectToAction("Accueil", "Home");
+                                HttpContext.Session.SetString("AccessViewModel",
+                                    JsonConvert.SerializeObject(accessViewModel));
+                                //TODO rediriger vers un page en fonction des droits de l'utilisateur
+                                return RedirectToAction("Accueil", "Home");
+                            }
+
+                            await _signInManager.SignOutAsync();
+
+                            ErrorMessage =
+                                "Votre compte n'a pas de droit d'accès à la plateforme. Merci de contacter le support.";
+                            return Page();
                         }
-
-                        await _signInManager.SignOutAsync();
-
-                        ErrorMessage =
-                            "Votre compte n'a pas de droit d'accès à la plateforme. Merci de contacter le support.";
-                        return Page();
                     }
                 }
 

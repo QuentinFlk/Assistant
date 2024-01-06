@@ -5,7 +5,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NLog;
 using System.Diagnostics;
+using Assistant_Interface.Models.Session;
 using NLog.Web;
+using static Assistant_Interface.Controllers.Utils.Utils;
+using Assistant_Interface.Data;
+using Newtonsoft.Json;
 
 namespace Assistant_Interface.Controllers
 {
@@ -14,16 +18,16 @@ namespace Assistant_Interface.Controllers
         private readonly AssistantContext _accessBddContext;
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly IConfiguration _configuration;
+        private readonly ApplicationDbContext _identityDbContext;
         protected Logger Logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 
         public HomeController(AssistantContext accessBddContext, IConfiguration configuration,
-            SignInManager<IdentityUser> signInManager, Logger? logger = null)
+            SignInManager<IdentityUser> signInManager, ApplicationDbContext identityDbContext)
         {
             _accessBddContext = accessBddContext;
             _configuration = configuration;
             _signInManager = signInManager;
-            if (logger != null)
-                Logger = logger;
+            _identityDbContext = identityDbContext;
         }
 
         public async Task<IActionResult> Index()
@@ -47,6 +51,21 @@ namespace Assistant_Interface.Controllers
         {
             try
             {
+                var sessionAccess = HttpContext.Session.GetString("AccessViewModel");
+                if (sessionAccess == null)
+                {
+                    var user = User;
+                    if (user.Identity.IsAuthenticated)
+                    {
+                        var accessViewModel = GetAccessViewModel(user, _identityDbContext);
+                        if (accessViewModel == null)
+                            return RedirectToAction("Index", "Home");
+                        HttpContext.Session.SetString("AccessViewModel",
+                            JsonConvert.SerializeObject(accessViewModel));
+                    }
+                    else
+                        return RedirectToAction("Index", "Home");
+                }
                 return View();
             }
             catch (Exception ex)

@@ -10,7 +10,7 @@ using NLog.Web;
 
 namespace Assistant_Interface.Areas.Identity.Pages.Account
 {
-    //[AllowAnonymous]
+    [AllowAnonymous]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<IdentityUser> _signInManager;
@@ -40,10 +40,6 @@ namespace Assistant_Interface.Areas.Identity.Pages.Account
         
         public class InputModel
         {
-            [Required]
-            [Display(Name = "Votre nom")]
-            public string Nom { get; set; }
-
             [Required]
             [EmailAddress]
             [Display(Name = "Email")]
@@ -88,7 +84,7 @@ namespace Assistant_Interface.Areas.Identity.Pages.Account
                     var user = CreateUser();
                     user.Email = Input.Email;
                     user.EmailConfirmed = true;
-                    await _userStore.SetUserNameAsync(user, Input.Nom, CancellationToken.None);
+                    await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
 
                     var result = await _userManager.CreateAsync(user, Input.Password);
                     if (result.Succeeded)

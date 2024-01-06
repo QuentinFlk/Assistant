@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using Assistant_Bdd.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Assistant_Interface.Models.ViewModels
 {
@@ -18,6 +19,10 @@ namespace Assistant_Interface.Models.ViewModels
             CreationAssistance = dataAssistant.CreationAssistance;
             UpdateAssistance = dataAssistant.UpdateAssistance;
             IdCreateurAssistant = dataAssistant.IdCreateurAssistant;
+        }
+
+        public AssistantViewModel()
+        {
         }
 
         public int IdAssistant { get; set; }

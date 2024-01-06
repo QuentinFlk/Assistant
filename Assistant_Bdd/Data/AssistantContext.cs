@@ -16,5 +16,16 @@ namespace Assistant_Bdd.Data
         public DbSet<Discussion> Discussion { get; set; }
         public DbSet<Message> Message { get; set; }
         public DbSet<Document> Document { get; set; }
+        public DbSet<Tag> Tag { get; set; }
+        public DbSet<TagAssistant> TagAssistant { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<TagAssistant>().HasKey(c => new
+            {
+                c.IdTag,
+                c.IdAssistant
+            });
+        }
     }
 }

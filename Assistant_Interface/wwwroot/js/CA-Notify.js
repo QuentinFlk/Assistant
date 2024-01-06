@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $.notify.addStyle('successBj360Notification', {
+    $.notify.addStyle('successAssistantNotification', {
         html: "<div>" +
             "<table class='table mb-0' style='height: 100px;'>" +
             "<tbody>" +
@@ -30,7 +30,7 @@
         }
     });
 
-    $.notify.addStyle('errorBj360Notification', {
+    $.notify.addStyle('errorAssistantNotification', {
         html: "<div>" +
             "<table class='table mb-0' style='height: 100px;'>" +
             "<tbody>" +
@@ -61,7 +61,7 @@
         }
     });
 
-    $.notify.addStyle('waitBj360Notification', {
+    $.notify.addStyle('waitAssistantNotification', {
         html: "<div>" +
             "<table class='table mb-0' style='height: 100px;'>" +
             "<tbody>" +

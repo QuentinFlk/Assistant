@@ -30,5 +30,7 @@ namespace Assistant_Bdd.Models
         public DateTime UpdateAssistance { get; set; }
 
         public string IdCreateurAssistant { get; set; }
+
+        public bool IsAssistantGlobal { get; set; }
     }
 }

@@ -117,7 +117,7 @@ a:active {
     color: var(--color-rouge);
 }
 body {
-    background: url('../images/fond/background.jpg');
+    /*background: url('../images/fond/background.jpg');*/
     font-family: "effra", Arial, sans-serif, FontAwesome;
 }
 
