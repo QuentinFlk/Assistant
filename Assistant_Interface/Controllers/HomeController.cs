@@ -1,5 +1,7 @@
 using Assistant_Interface.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using System.Diagnostics;
 
 namespace Assistant_Interface.Controllers
@@ -16,6 +18,22 @@ namespace Assistant_Interface.Controllers
         public IActionResult Index()
         {
             return View();
+        }
+
+        [AllowAnonymous]
+        public IActionResult Accueil()
+        {
+            try
+            {
+                return View();
+            }
+            catch (Exception ex)
+            {
+                //Logger.Error(ex.Message);
+                //Logger.Error(ex.StackTrace);
+                //Logger.Error(ex.InnerException);
+                return RedirectToAction("Index");
+            }
         }
 
         public IActionResult Privacy()
