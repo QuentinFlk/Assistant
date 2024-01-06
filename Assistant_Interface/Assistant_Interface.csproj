@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-Assistant_Interface-e758dab8-d460-47ab-8c11-152731814d09</UserSecretsId>
   </PropertyGroup>
