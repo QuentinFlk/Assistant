@@ -1,0 +1,44 @@
+﻿@using Syncfusion.EJ2.Grids
+@using Syncfusion.EJ2
+@model Assistant_Interface.Models.ViewModels.GestionAssistantViewModel
+
+@{
+    var htmlAttributes = new Dictionary<string, object> { { "class", "tableau-syncfusion-beaujo360" } };
+}
+
+<div class="container-fluid">
+    <div class="row">
+        @if (@Model.ListAssistantInactif.Count > 0)
+        {
+            @(Html.EJS().Grid("TableAssistantInactif").DataSource(@Model.ListAssistantInactif).HtmlAttributes(htmlAttributes).AllowSorting().AllowTextWrap().Columns(col =>
+                {
+                    col.HeaderText("Nom de l'assistant").Field("NomAssistant").TextAlign(TextAlign.Center).ClipMode(ClipMode.EllipsisWithTooltip).Add();
+                    col.HeaderText("Créateur assistant").Field("NomCreateurAssistant").TextAlign(TextAlign.Center).ClipMode(ClipMode.EllipsisWithTooltip).Add();
+                    col.HeaderText("Description").Field("DescriptionAssistant").TextAlign(TextAlign.Center).ClipMode(ClipMode.EllipsisWithTooltip).Add();
+                    col.HeaderText("Date création").Format(new
+                    {
+                        type = "dateTime",
+                        format = "dd/MM/yyyy HH:mm:ss"
+                    }).Type("dateTime").Field("CreationAssistance").TextAlign(TextAlign.Center).ClipMode(ClipMode.EllipsisWithTooltip).Add();
+                    col.HeaderText("Date mise à jour").Format(new
+                    {
+                        type = "dateTime",
+                        format = "dd/MM/yyyy HH:mm:ss"
+                    }).Type("dateTime").Field("UpdateAssistance").TextAlign(TextAlign.Center).ClipMode(ClipMode.EllipsisWithTooltip).Add();
+                    col.HeaderText("Action").Template("#templateActionInactif").TextAlign(TextAlign.Center).ClipMode(ClipMode.EllipsisWithTooltip).Add();
+                }).Locale("fr-FR").TextWrapSettings(text =>
+                {
+                    text.WrapMode(WrapMode.Both);
+                }).Render())
+
+        }
+        else
+        {
+            <p>Aucun Assistant inactif disponible</p>
+        }
+    </div>
+</div>
+
+<script id="templateActionInactif" type="text/x-template">
+
+</script>
