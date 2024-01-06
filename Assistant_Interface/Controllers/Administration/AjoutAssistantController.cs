@@ -113,7 +113,7 @@ namespace Assistant_Interface.Controllers.Administration
                 var respFormat =
                     new JsonResult(
                             "L'assistant a correctement été créé, vous allez être redirigé vers la page de configuration._" +
-                            assistantOpenai.Id)
+                            assistant.IdAssistant)
                         {StatusCode = StatusCodes.Status200OK};
                 return respFormat;
             }

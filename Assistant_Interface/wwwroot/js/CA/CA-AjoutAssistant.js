@@ -58,7 +58,7 @@ function AjoutAssistant() {
         data: jsonData,
         success: function (reponse) {
             var message = reponse.split('_')[0];
-            var openAiAssisantId = reponse.split('_')[1];
+            var idAssistant = reponse.split('_')[1];
             $.notify(message,
                 {
                     style: 'successAssistantNotification',
@@ -67,7 +67,7 @@ function AjoutAssistant() {
                 });
 
             setTimeout(function () {
-                location.replace(location.origin + "/DetailAssistant/Index?openAiAssisantId=" + openAiAssisantId);
+                location.replace(location.origin + "/DetailAssistant/Index?idAssistant=" + idAssistant);
             }, 3000);
         },
         error: function (error) {

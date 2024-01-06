@@ -25,7 +25,8 @@
                         type = "dateTime",
                         format = "dd/MM/yyyy HH:mm:ss"
                     }).Type("dateTime").Field("UpdateAssistance").TextAlign(TextAlign.Center).ClipMode(ClipMode.EllipsisWithTooltip).Add();
-                    col.HeaderText("Action").Template("#templateActionActif").TextAlign(TextAlign.Center).ClipMode(ClipMode.EllipsisWithTooltip).Add();
+                    col.HeaderText("Assistant global").Field("IsAssistantGlobal").Template("#templateGlobal").TextAlign(TextAlign.Center).ClipMode(ClipMode.EllipsisWithTooltip).Add();
+                    col.HeaderText("Action").Template("#templateAction").TextAlign(TextAlign.Center).ClipMode(ClipMode.EllipsisWithTooltip).Add();
                 }).Locale("fr-FR").TextWrapSettings(text =>
                 {
                     text.WrapMode(WrapMode.Both);
@@ -39,6 +40,17 @@
     </div>
 </div>
 
-<script id="templateActionActif" type="text/x-template">
+<script id="templateGlobal" type="text/x-template">
+    ${if(IsAssistantGlobal)}
+        OUI (ne peut pas être supprimé)
+    ${else}
+        NON
+    ${/if}
+</script>
 
+<script id="templateAction" type="text/x-template">
+    <a href="/DetailAssistant/Index?idAssistant=${IdAssistant}" class="btn button-cta" title="Accéder à son détail"><i class="fa fa-eye" aria-hidden="true"></i></a>
+    ${if(!IsAssistantGlobal)}
+        <button class="btn button-cta delete-assistant ml-1" id="deleteAssistant-${IdAssistant}" title=""><i class="fa fa-times" aria-hidden="true"></i></button>
+    ${/if}
 </script>

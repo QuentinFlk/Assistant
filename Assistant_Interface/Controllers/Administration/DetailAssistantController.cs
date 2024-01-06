@@ -24,7 +24,7 @@ namespace Assistant_Interface.Controllers.Administration
             _identityDbContext = identityDbContext;
         }
 
-        public IActionResult Index(string openAiAssisantId)
+        public IActionResult Index(string idAssistant)
         {
             try
             {

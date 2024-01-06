@@ -50,13 +50,13 @@ namespace Assistant_Interface.Controllers.Administration
                 var listAssistant = _accessBddContext.Assistant.ToList();
                 var viewModel = new GestionAssistantViewModel
                 {
-                    ListAssistantActif = new List<AssistantViewModel>(),
-                    ListAssistantInactif = new List<AssistantViewModel>()
+                    ListAssistantActif = new List<DetailAssistant>(),
+                    ListAssistantInactif = new List<DetailAssistant>()
                 };
 
                 foreach (var assistant in listAssistant)
                 {
-                    var item = new AssistantViewModel(assistant);
+                    var item = new DetailAssistant(assistant);
                     var user = _identityDbContext.Users.FirstOrDefault(x => x.Id == assistant.IdCreateurAssistant);
                     item.NomCreateurAssistant = user != null ? user.UserName : "Inconnu";
                     if (assistant.AssistantActif)
