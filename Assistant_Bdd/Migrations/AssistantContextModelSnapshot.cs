@@ -119,7 +119,7 @@ namespace Assistant_Bdd.Migrations
 
                     b.HasIndex("IdAssistant");
 
-                    b.ToTable("Thread");
+                    b.ToTable("Discussion");
                 });
 
             modelBuilder.Entity("Assistant_Bdd.Models.Document", b =>

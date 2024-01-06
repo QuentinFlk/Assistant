@@ -13,7 +13,7 @@ namespace Assistant_Bdd.Data
 
         public DbSet<Client> Client { get; set; }
         public DbSet<Assistant> Assistant { get; set; }
-        public DbSet<Discussion> Thread { get; set; }
+        public DbSet<Discussion> Discussion { get; set; }
         public DbSet<Message> Message { get; set; }
         public DbSet<Document> Document { get; set; }
     }

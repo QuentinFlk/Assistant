@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Assistant_Bdd.Migrations
 {
     [DbContext(typeof(AssistantContext))]
-    [Migration("20240106094427_init BDD")]
-    partial class initBDD
+    [Migration("20240106103202_initbd")]
+    partial class initbd
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -122,7 +122,7 @@ namespace Assistant_Bdd.Migrations
 
                     b.HasIndex("IdAssistant");
 
-                    b.ToTable("Thread");
+                    b.ToTable("Discussion");
                 });
 
             modelBuilder.Entity("Assistant_Bdd.Models.Document", b =>

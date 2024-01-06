@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Assistant_Bdd.Migrations
 {
     /// <inheritdoc />
-    public partial class initBDD : Migration
+    public partial class initbd : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -66,7 +66,7 @@ namespace Assistant_Bdd.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Thread",
+                name: "Discussion",
                 columns: table => new
                 {
                     IdDiscussion = table.Column<int>(type: "int", nullable: false)
@@ -78,9 +78,9 @@ namespace Assistant_Bdd.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Thread", x => x.IdDiscussion);
+                    table.PrimaryKey("PK_Discussion", x => x.IdDiscussion);
                     table.ForeignKey(
-                        name: "FK_Thread_Assistant_IdAssistant",
+                        name: "FK_Discussion_Assistant_IdAssistant",
                         column: x => x.IdAssistant,
                         principalTable: "Assistant",
                         principalColumn: "IdAssistant");
@@ -101,21 +101,21 @@ namespace Assistant_Bdd.Migrations
                 {
                     table.PrimaryKey("PK_Message", x => x.IdMessage);
                     table.ForeignKey(
-                        name: "FK_Message_Thread_IdDiscussion",
+                        name: "FK_Message_Discussion_IdDiscussion",
                         column: x => x.IdDiscussion,
-                        principalTable: "Thread",
+                        principalTable: "Discussion",
                         principalColumn: "IdDiscussion");
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Discussion_IdAssistant",
+                table: "Discussion",
+                column: "IdAssistant");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Message_IdDiscussion",
                 table: "Message",
                 column: "IdDiscussion");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Thread_IdAssistant",
-                table: "Thread",
-                column: "IdAssistant");
         }
 
         /// <inheritdoc />
@@ -131,7 +131,7 @@ namespace Assistant_Bdd.Migrations
                 name: "Message");
 
             migrationBuilder.DropTable(
-                name: "Thread");
+                name: "Discussion");
 
             migrationBuilder.DropTable(
                 name: "Assistant");
