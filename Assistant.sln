@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assistant_Interface", "Assistant_Interface\Assistant_Interface.csproj", "{32112652-AD41-45B8-A5B9-8459C2A73607}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assistant_Bdd", "Assistant_Bdd\Assistant_Bdd.csproj", "{BEEA7362-68E0-4AED-90D2-1260FA963914}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{32112652-AD41-45B8-A5B9-8459C2A73607}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32112652-AD41-45B8-A5B9-8459C2A73607}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32112652-AD41-45B8-A5B9-8459C2A73607}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BEEA7362-68E0-4AED-90D2-1260FA963914}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BEEA7362-68E0-4AED-90D2-1260FA963914}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BEEA7362-68E0-4AED-90D2-1260FA963914}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BEEA7362-68E0-4AED-90D2-1260FA963914}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
