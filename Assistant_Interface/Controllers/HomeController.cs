@@ -1,23 +1,46 @@
+using Assistant_Bdd.Data;
 using Assistant_Interface.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using NLog;
 using System.Diagnostics;
+using NLog.Web;
 
 namespace Assistant_Interface.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly AssistantContext _accessBddContext;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly IConfiguration _configuration;
+        protected Logger Logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(AssistantContext accessBddContext, IConfiguration configuration,
+            SignInManager<IdentityUser> signInManager, Logger? logger = null)
         {
-            _logger = logger;
+            _accessBddContext = accessBddContext;
+            _configuration = configuration;
+            _signInManager = signInManager;
+            if (logger != null)
+                Logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            try
+            {
+                await _signInManager.SignOutAsync();
+                return RedirectToAction("Accueil", "Home");
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex.Message);
+                Logger.Error(ex.StackTrace);
+                Logger.Error(ex.InnerException);
+                return RedirectToAction("Error");
+            }
         }
 
         [AllowAnonymous]
@@ -29,9 +52,9 @@ namespace Assistant_Interface.Controllers
             }
             catch (Exception ex)
             {
-                //Logger.Error(ex.Message);
-                //Logger.Error(ex.StackTrace);
-                //Logger.Error(ex.InnerException);
+                Logger.Error(ex.Message);
+                Logger.Error(ex.StackTrace);
+                Logger.Error(ex.InnerException);
                 return RedirectToAction("Index");
             }
         }

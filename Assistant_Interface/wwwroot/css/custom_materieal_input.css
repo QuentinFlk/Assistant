@@ -1,0 +1,95 @@
+﻿@import "variables.css";
+
+.btn.focus, .btn:focus, .form-control:focus {
+    box-shadow: none;
+}
+
+/* Material input */
+.material-input {
+    /*height: 54px;*/
+    height: 42px;
+    /*border-radius: 4px 4px 0 0;*/
+    -ms-border-radius: 4px;
+    border-radius: 4px;
+    position: relative;
+    /*border-bottom: 2px solid var(--rgba-material-input);*/
+    -ms-transition: border-color 100ms ease-in-out, background-color 100ms ease-in-out;
+    -o-transition: border-color 100ms ease-in-out, background-color 100ms ease-in-out;
+    -webkit-transition: border-color 100ms ease-in-out, background-color 100ms ease-in-out;
+    transition: border-color 100ms ease-in-out, background-color 100ms ease-in-out;
+}
+
+    .material-input label {
+        position: absolute;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 1;
+        color: var(--color-gris);
+        left: 15px;
+        /*top: 19px;*/
+        top: 50%;
+        transform: translateY(-50%);
+        margin-bottom: 0;
+        pointer-events: none;
+        -ms-transition: font-size 100ms ease-in-out, top 100ms ease-in-out, color 100ms ease-in-out;
+        -o-transition: font-size 100ms ease-in-out, top 100ms ease-in-out, color 100ms ease-in-out;
+        -webkit-transition: font-size 100ms ease-in-out, top 100ms ease-in-out, color 100ms ease-in-out;
+        transition: font-size 100ms ease-in-out, top 100ms ease-in-out, color 100ms ease-in-out;
+    }
+
+    .material-input input {
+        width: 100%;
+        height: 100%;
+        /*padding: 26px 15px 26px 15px;*/
+        padding: 19px 15px 19px 15px;
+        font-size: 16px;
+        font-weight: 300;
+        line-height: 1;
+        color: var(--color-noire);
+        /*border: unset;*/
+        border: 1px solid var(--color-gris);
+        /*background: unset;*/
+        background: var(--bg-blanc);
+    }
+
+        .material-input input:focus, .textarea-div textarea:focus {
+            outline: none;
+            border: 1px solid var(--color-material-inputfocus);
+        }
+
+            .material-input input:focus label, .textarea-div label textarea:focus {
+                color: var(--color-material-inputfocus);
+            }
+
+        .material-input input::placeholder, .textarea-div textarea::placeholder {
+            color: transparent;
+        }
+
+    .material-input:focus-within {
+        border-color: var(--color-material-inputfocus);
+    }
+
+        .material-input:focus-within label {
+            color: var(--color-material-inputfocus);
+        }
+
+        .material-input:focus-within label, .material-input input:not(:placeholder-shown) + label {
+            font-size: 14px;
+            /*top: -8px;*/
+            top: 0;
+            background: var(--bg-blanc);
+            color: var(--color-rouge);
+            padding: 0 5px;
+        }
+
+    .material-input .unite {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 10px;
+        margin: auto;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-bleue)
+    }

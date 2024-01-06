@@ -1,12 +1,44 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
+
+@{
+    var timestamp = DateTime.Now.ToString("yyyyMMddHHmmssfff");
+}
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Assistant_Interface</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Assistant_Interface.styles.css" asp-append-version="true" />
+    <title>@ViewData["Title"] - Celia</title>
+    <!--Typo custom-->
+    <script src="https://kit.fontawesome.com/4cd85245c2.js" crossorigin="anonymous"></script>
+
+    <!-- Typo Effra 400, 500, 700, 900, italic -->
+    <link rel="stylesheet" href="https://use.typekit.net/ltm5quj.css">
+
+    <!-- Librairies -->
+    <!-- Jquery -->
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <!-- Jquery UI -->
+    <script src="~/lib/jquery-ui/jquery-ui.js"></script>
+    <!-- Bootstrap 4.5.3 -->
+    <link rel="stylesheet" href="~/lib/bootstrap-4.5.3/dist/css/bootstrap.min.css" />
+    <script src="~/lib/bootstrap-4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Bootstrap Select -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/css/bootstrap-select.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.1/js/bootstrap-select.min.js"></script>
+    <!-- Bootstrap Notify -->
+    <script src="~/lib/notify.js/notify.min.js"></script>
+    <!--Global-->
+    <script src="~/js/site.js"></script>
+    <link rel="stylesheet" href="~/css/flk_syncfusion.css?@timestamp" />
+    <link rel="stylesheet" href="~/css/custom_materieal_input.css?@timestamp" />
+    <link rel="stylesheet" href="~/css/css_structurel.css?@timestamp" />
+    <link rel="stylesheet" href="~/css/site.css?@timestamp" />
+    <!-- Syncfusion -->
+    <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/material.css" />
+    <script src="https://cdn.syncfusion.com/ej2/dist/ej2.min.js"></script>
+    <script src="~/js/syncfusion.js?@timestamp"></script>
 </head>
 <body>
     <header>
@@ -18,33 +50,91 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
                     <partial name="_LoginPartial" />
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <div class="container-fluid body-content body-container" style="overflow: auto; min-height: 800px;">
+        @RenderBody()
     </div>
-
+    <!-- Sidebar ADMIN -->
+    <div class="sidebar">
+        <button class="btn update-button" id="arrow-open-sidebar-admin"><i class="fa fa-cogs mr-2"></i>Administration</button>
+        <button class="btn" id="cross-open-sidebar-admin"><i class="fas fa-times"></i></button>
+        <!--menu item-->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <p class="soustitre-section px-0 mb-0">Administration</p>
+                </div>
+                <div class="col-12">
+                    <div class="accordion-cob" id="accordionAdministration">
+                        <!-- ~~ SECTION PROSPECTION ~~ -->
+                        @* <div class="card pt-3">
+                            <div class="card-header p-0" id="headingSynthese">
+                                <h5 class="mb-0">
+                                    <button class="btn btn-link  text-left w-100 label-alone" type="button" data-toggle="collapse" data-target="#collapseProspection" aria-expanded="true" aria-controls="Prospections">
+                                        Prospections
+                                    </button>
+                                </h5>
+                            </div>
+                            <div id="collapseProspection" class="collapse show" aria-labelledby="headingParams" data-parent="#accordionAdministration">
+                                <div class="card-body p-0">
+                                    <div class="container-fluid py-0">
+                                        <div class="row">
+                                            <div class="col-6 py-3">
+                                                <a href="@Url.Action("Index", "GestionJourneeProspection")">
+                                                    <div class="tile-admin">
+                                                        <i class="fa-solid fa-table"></i>
+                                                        <label class="mb-0 pt-2">Gestion des journées de prospection</label>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-6 py-3">
+                                                <a href="@Url.Action("Index", "GestionProspectionOperateur")">
+                                                    <div class="tile-admin">
+                                                        <i class="fa-solid fa-calendar-alt"></i>
+                                                        <label class="mb-0 pt-2">Gestion des prospections opérateur</label>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                            <div class="col-6 py-3">
+                                                <a href="@Url.Action("Index", "ListeOperateur")">
+                                                    <div class="tile-admin">
+                                                        <i class="fa-solid fa-address-book"></i>
+                                                        <label class="mb-0 pt-2">Liste des opérateurs</label>
+                                                    </div>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> *@
+                        <!-- ~~~~ -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="overlay-sidebar"></div>
+    <!-- FIN Sidebar ADMIN -->
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2024 - Assistant_Interface - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; @DateTime.Today.Year - FLK
         </div>
     </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
+
+    @{
+        var textMacaron = Configuration.GetSection("Macaron:text").Value;
+        var classMacaron = Configuration.GetSection("Macaron:class_color").Value;
+        var typePlateforme = Configuration.GetSection("Macaron:type_plateforme").Value;
+    }
+    @if (!typePlateforme.Equals("Prod"))
+    {
+        <div class="logo_type_plateforme @classMacaron">@textMacaron</div>
+    }
 </body>
 </html>

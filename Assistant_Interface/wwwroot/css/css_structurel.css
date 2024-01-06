@@ -1,0 +1,402 @@
+﻿body {
+    background: rgba(18, 39, 57, 1);
+    /* ↓ Pour des tests ↓ */
+    /*background: rgba(0, 0, 0, .2);*/
+    background-size: cover;
+}
+
+/* ===== Scrollbar CSS ===== */
+/* Firefox */
+* {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(7, 36, 55,.8) #ffffff;
+}
+
+/* Chrome, Edge, and Safari */
+*::-webkit-scrollbar {
+    width: 10px;
+    height: 15px;
+}
+
+*::-webkit-scrollbar-track {
+    background: #ffffff;
+}
+
+    *::-webkit-scrollbar-thumb {
+        background-color: rgba(7, 36, 55,.8);
+        border-radius: 10px;
+        border: 0px none #ffffff;
+    }
+
+.partie-gauche {
+    display: flex;
+    -ms-align-items: start;
+    -o-align-items: start;
+    -webkit-align-items: flex-start;
+    align-items: start;
+    -o-justify-content: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+    .partie-gauche .inner-partie-gauche {
+        -ms-border-radius: 10px;
+        border-radius: 10px;
+        height: 100%;
+        background: url(../images/fond/background.jpg);
+        width: 100%;
+        position: relative;
+    }
+
+        .partie-gauche .inner-partie-gauche li a:not(.btn) {
+            color: var(--color-bleue);
+            text-decoration: none;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            transition: all .3s ease-in-out;
+        }
+
+        .partie-gauche .inner-partie-gauche li > a:not(.btn):hover,
+        .partie-gauche .inner-partie-gauche li > a:not(.btn):focus,
+        .partie-gauche .inner-partie-gauche li > a:not(.btn):active,
+        .partie-gauche .inner-partie-gauche li > a:not(.btn).active {
+            color: var(--color-rouge);
+            text-decoration: none;
+            border-left: 10px solid var(--color-rouge);
+        }
+
+    .partie-gauche .infos-structure-lateral {
+        background: var(--color-rouge);
+        color: var(--color-blanche);
+        padding: 20px;
+        margin-bottom: 10px;
+        box-shadow: 0 0 4px var(--color-anthracite);
+    }
+
+    .partie-gauche .infos-structure-lateral a {
+        color: var(--color-blanche) !important;
+        text-decoration: underline !important;
+    }
+
+        .partie-gauche .infos-structure-lateral a:hover,
+        .partie-gauche .infos-structure-lateral a:focus,
+        .partie-gauche .infos-structure-lateral a:active {
+            text-decoration: none !important;
+        }
+
+.partie-droite {
+    background-size: cover;
+    /*box-shadow: -10px 10px 20px rgba(18, 39, 57, .3);*/
+    display: flex;
+    -ms-align-items: center;
+    -o-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -o-justify-content: start;
+    -webkit-justify-content: flex-start;
+    justify-content: start;
+    flex-direction: column;
+    padding-left: 5%;
+    padding-right: 5%;
+    min-height: 100vh;
+}
+
+    .partie-droite .inner-partie-droite {
+        -ms-border-radius: 10px;
+        border-radius: 10px;
+        height: 100%;
+        background: url(../images/fond/background.jpg);
+        width: 100%;
+    }
+
+/* ## Checkboxes custom ## */
+.checkbox-flk {
+    margin-bottom: 16px;
+}
+
+.checkbox-flk .label-cbx {
+    user-select: none;
+    cursor: pointer;
+    margin-bottom: 0;
+}
+
+.checkbox-flk .label-cbx input:checked + .checkbox {
+    border-color: var(--color-rouge);
+}
+
+.checkbox-flk .label-cbx input:checked + .checkbox svg path {
+    fill: var(--color-rouge);
+}
+
+.checkbox-flk .label-cbx input:checked + .checkbox svg polyline {
+    stroke-dashoffset: 0;
+}
+
+.checkbox-flk .label-cbx:hover .checkbox svg path {
+    stroke-dashoffset: 0;
+}
+
+.checkbox-flk .label-cbx .checkbox {
+    position: relative;
+    margin-right: 8px;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #C8CCD4;
+    border-radius: 3px;
+}
+
+.checkbox-flk .label-cbx .checkbox svg {
+    position: absolute;
+    top: -2px;
+    left: -2px;
+}
+
+.checkbox-flk .label-cbx .checkbox svg path {
+    fill: none;
+    stroke: var(--color-rouge);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 71px;
+    stroke-dashoffset: 71px;
+    transition: all 0.2s ease;
+}
+
+.checkbox-flk .label-cbx .checkbox svg polyline {
+    fill: none;
+    stroke: #FFF;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    stroke-dasharray: 18px;
+    stroke-dashoffset: 18px;
+    transition: all 0.3s ease;
+}
+
+.checkbox-flk .label-cbx > span {
+    pointer-events: none;
+    vertical-align: middle;
+}
+
+.checkbox-flk .invisible {
+    position: absolute;
+    z-index: -1;
+    width: 0;
+    height: 0;
+    opacity: 0;
+}
+/* ## Fin checkboxes custom ## */
+
+/* ## Toggle Switch custom ## */
+.toggle-flk {
+    position: relative;
+    box-sizing: border-box;
+    margin-bottom: 30px;
+    display: inline-flex;
+    flex-direction: column;
+    -ms-align-items: center;
+    -o-align-items: center;
+    -webkit-align-items: center;
+    align-items: center;
+    -o-justify-content: center;
+    -webkit-justify-content: center;
+    justify-content: center;
+}
+
+    .toggle-flk label.label-switch {
+        margin-bottom: 5px;
+    }
+
+    .toggle-flk label.label-for-checkbox {
+        position: relative;
+        display: flex;
+        align-items: center;
+        height: 36px;
+        box-sizing: border-box;
+    }
+
+    .toggle-flk input.switchFlk[type=checkbox] {
+        position: absolute;
+        left: 0;
+        top: 0;
+        z-index: 10;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        opacity: 0;
+    }
+
+    .toggle-flk label.label-for-checkbox:before {
+        content: "";
+        width: 62px;
+        height: 26px;
+        -ms-border-radius: 20px;
+        border-radius: 20px;
+        position: relative;
+        display: inline-block;
+        -ms-transition: 0.2s ease;
+        -o-transition: 0.2s ease;
+        -webkit-transition: 0.2s ease;
+        transition: 0.2s ease;
+        box-sizing: border-box;
+        background-color: var(--color-verte);
+        box-shadow: 0 0 3px var(--color-bleue), inset -72px 0 #fff;
+    }
+
+.toggle-flk input.switchFlk[type=checkbox]:checked ~ label.label-for-checkbox:before {
+        box-shadow: 0 0 3px var(--color-verte), inset 0 0 #fff;
+    }
+
+    .toggle-flk label.label-for-checkbox:after {
+        content: "";
+        position: absolute;
+        width: 20px;
+        height: 20px;
+        background: var(--color-bleue);
+        border-radius: 20px;
+        box-sizing: border-box;
+        left: -1px;
+        top: 0;
+        transform: translate(8px, 8px);
+        transition: 0.2s ease;
+    }
+
+    .toggle-flk input.switchFlk[type=checkbox]:checked ~ label.label-for-checkbox:after {
+        background: #FFF;
+        transform: translate(37px, 8px);
+    }
+/* ## Fin Toggle Switch custom ## */
+
+/* ## Tabs Bootstrap custom ## */
+.nav-tabs-flk {
+    border-color: var(--color-rouge);
+}
+    .nav-tabs-flk .nav-item.show .nav-link,
+    .nav-tabs-flk .nav-link.active,
+    .nav-tabs-flk .nav-link:focus {
+        border-color: var(--color-rouge);
+        background: var(--color-rouge);
+        color: #fff;
+    }
+    .nav-tabs-flk .nav-link {
+        color: var(--color-bleue);
+        background: transparent;
+    }
+    
+    .nav-tabs-flk .nav-link:hover {
+        border-color: var(--rgba-material-input);
+        color: #fff;
+        background: var(--rgba-material-input);
+    }
+/* ## Fin tabs Bootstrap custom ## */
+
+/* ## Tableau boostrap FLK ## */
+table.table-bootstrap-cob {
+    border-collapse: collapse !important;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+    table.table-bootstrap-cob thead {
+        height: 63px;
+    }
+
+    table.table-bootstrap-cob th {
+        background-color: var(--color-bleue) !important;
+        border: none !important;
+        color: var(--color-blanche);
+    }
+
+    table.table-bootstrap-cob tbody {
+        height: 150px;
+        background: #eee;
+    }
+
+table.table-bootstrap-cob tbody td {
+            vertical-align: middle;
+        }
+
+table.table-bootstrap-cob tbody td a {
+            color: var(--color-rouge);
+    text-decoration: underline;
+        }
+/* ## Fin Tableau bootstrap FLK ## */
+
+/* ## Cadre informatif ## */
+.card-informative {
+    background: rgba(57, 184, 230, 0.2);
+    margin-bottom: 30px;
+    box-shadow: none !important;
+    border: none !important;
+}
+    .card-informative.journees-ok {
+        background: rgba(1, 166, 122, 0.2);
+    }
+    .card-informative.journees-ko {
+        background: rgba(175, 17, 50, 0.2);
+    }
+    .card-informative.journees-okko {
+        background: rgba(255, 169, 71, 0.2);
+    }
+
+.card-informative .block-icone .fa-lightbulb {
+    --fa-primary-color: #b11424;
+    --fa-secondary-color: #b11424;
+}
+
+    .card-informative .block-icone .fa-circle-exclamation {
+        --fa-primary-color: #b11424;
+        --fa-secondary-color: #b11424;
+    }
+
+.card-informative .block-texte {
+    color: var(--color-bleue);
+}
+/* ## Fin cadre informatif ## */
+
+/* ## Card prospection inscription ## */
+#TableJourneeProspection .e-card-content,
+#TableInscriptionProspection .e-card-content {
+    overflow: unset;
+}
+#TableJourneeProspection .e-card-header-title label,
+#TableInscriptionProspection .e-card-header-title label {
+    margin-bottom: 0;
+    font-family: 'rogue-serif', sans-serif;
+    font-size: 16px;
+    color: var(--color-bleue);
+}
+#TableJourneeProspection .e-card-content label,
+#TableInscriptionProspection .e-card-content label {
+    margin-bottom: 0;
+    font-family: 'effra', sans-serif;
+    font-size: 16px;
+    color: var(--color-bleue);
+    display: block;
+    text-align: right;
+}
+    #TableJourneeProspection .e-card-content label:last-of-type,
+    #TableInscriptionProspection .e-card-content label:last-of-type {
+        margin-bottom: 10px;
+    }
+
+.p-excuse {
+    text-align: center;
+    color: #3D18BA;
+    display: inline-block;
+    width: auto;
+    background: rgba(61, 24, 186, 0.2);
+}
+/* ## Fin card prospection inscription ## */
+
+.loader-submit {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    display: inline-block;
+    border-top: 2px solid #FFF;
+    border-right: 2px solid transparent;
+    box-sizing: border-box;
+    animation: rotation .5s linear infinite;
+}

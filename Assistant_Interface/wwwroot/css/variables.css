@@ -1,0 +1,106 @@
+﻿:root {
+    --color-grisclair: #f2f1f1;
+    --color-grisfonce: #3e3e3e;
+    --color-gris: #7c7c7c;
+    /* -- Couleurs background -- */
+    --bg-blanc: rgb(255,255,255);
+    --bg-rouge: rgb(177, 20, 36);
+    --bg-bleue: rgb(7, 36, 55);
+    --bg-vert: rgb(131, 184, 26);
+    /* -- Couleurs simples -- */
+    --color-bleue: rgb(7, 36, 55);
+    --color-rouge: rgb(177, 20, 36);
+    --color-blanche: rgb(255,255,255);
+    --color-noire: rgb(0,0,0);
+    --color-anthracite: rgb(51, 51, 51);
+    --color-verte: rgb(131, 184, 26);
+    /* -- Couleurs RGB -- */
+    --rgb-color-bleue: 7, 36, 55;
+    --rgb-color-rouge: 177, 20, 36;
+    --rgb-color-blanche: 255,255,255;
+    --rgb-color-noire: 0,0,0;
+    --rgb-color-anthracite: 51, 51, 51;
+    --rgb-color-verte: 131, 184, 26;
+    /* -- Animation des boutons CTA -- */
+    --rgba-pulse_cta-0: rgba(177, 20, 36, 0.7);
+    --rgba-pulse_cta-70_100: rgba(7, 36, 55, 0);
+    --animation-pulse_cta: pulse-cta 2s infinite cubic-bezier(0.66, 0, 0, 1);
+    /* -- Material input -- */
+    --rgba-material-input: rgba(7, 36, 55, 0.5);
+    --color-material-inputfocus: rgba(177, 20, 36, 0.5);
+    /*COULEUR DES CARTES*/
+    --color-journee-vide: #5086C7;
+    --color-journee-en-cours: #123E4E;
+    --color-journee-pleine: #D8657E;
+    --color-journee-inscrit: #F1B94F;
+    --color-journee-echue: #C6D6E9;
+}
+
+/* ~~ Animation pulse-cta ~~ */
+@-webkit-keyframes pulse-cta {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 var(--rgba-pulse_cta-0);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px var(--rgba-pulse_cta-70_100);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 var(--rgba-pulse_cta-70_100);
+    }
+}
+
+@-moz-keyframes pulse-cta {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 var(--rgba-pulse_cta-0);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px var(--rgba-pulse_cta-70_100);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 var(--rgba-pulse_cta-70_100);
+    }
+}
+
+@-ms-keyframes pulse-cta {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 var(--rgba-pulse_cta-0);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px var(--rgba-pulse_cta-70_100);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 var(--rgba-pulse_cta-70_100);
+    }
+}
+
+@keyframes pulse-cta {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 var(--rgba-pulse_cta-0);
+    }
+
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 10px var(--rgba-pulse_cta-70_100);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 var(--rgba-pulse_cta-70_100);
+    }
+}

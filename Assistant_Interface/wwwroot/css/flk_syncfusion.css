@@ -1,0 +1,999 @@
+﻿/* ~~ TABLEAUX SYNCFUSION ITL ~~ */
+/* Classes row */
+.row-journee_vide {
+    background-color: #5086C7 !important;
+}
+    .row-journee_vide td {
+        color: #fff !important;
+    }
+        .row-journee_vide:hover td,
+        .row-journee_vide td.e-active {
+            background-color: #5086C7 !important;
+        }
+.row-journee_en_cours {
+    background-color: #123E4E !important;
+}
+    .row-journee_en_cours td {
+        color: #fff !important;
+    }
+        .row-journee_en_cours:hover td,
+        .row-journee_en_cours td.e-active {
+            background-color: #123E4E !important;
+        }
+.row-journee_pleine {
+    background-color: #D8657E !important;
+}
+    .row-journee_pleine td {
+        color: #fff !important;
+    }
+    .row-journee_pleine:hover td,
+    .row-journee_pleine td.e-active {
+        background-color: #D8657E !important;
+    }
+.row-journee_inscrit {
+    background-color: #F1B94F !important;
+}
+.row-journee_inscrit td {
+    color: #fff !important;
+}
+    .row-journee_inscrit:hover td,
+    .row-journee_inscrit td.e-active {
+        background-color: #F1B94F !important;
+    }
+.row-journee_echue {
+    background-color: #C6D6E9 !important;
+}
+    .row-journee_echue td {
+        color: var(--color-bleue) !important;
+    }
+    .row-journee_echue:hover td,
+    .row-journee_echue td.e-active {
+        background-color: #C6D6E9 !important;
+    }
+.row-journee_excusee {
+    background-color: #3D18BA !important;
+}
+    .row-journee_excusee td {
+        color: var(--color-blanche) !important;
+    }
+        .row-journee_excusee:hover td,
+        .row-journee_excusee td.e-active {
+            background-color: #3D18BA !important;
+        }
+
+.e-pager .e-currentitem, .e-pager .e-currentitem:hover {
+    background: var(--color-rouge) !important;
+    color: #fff;
+    opacity: 1;
+}
+
+.table:not(.e-table) {
+    border-collapse: separate;
+}
+
+.e-grid .e-rowcell p {
+    margin-bottom: 0;
+    color: #000000;
+    color: rgba(0, 0, 0, .87);
+}
+
+.tableau-syncfusion-cob {
+    max-height: 800px !important;
+    /*overflow-y: scroll;*/
+}
+
+    .tableau-syncfusion-cob .e-gridheader {
+        position: sticky !important;
+        top: 0 !important;
+        z-index: 1;
+    }
+
+table td.cell-to-alignright {
+    text-align: right !important;
+}
+
+/*#TableDrmCielRefuse_content_table .e-templatecell {
+    display: flex !important;
+}*/
+
+.tableau-syncfusion-cob.e-grid .e-detailcell {
+    padding: 0em 0 0 0.5em;
+    background: var(--color-rouge);
+    border-color: var(--color-anthracite);
+}
+
+.tableau-syncfusion-cob.e-grid .e-detailindentcell {
+    background: var(--color-rouge);
+    border-color: var(--color-rouge) !important;
+}
+
+.tableau-syncfusion-cob.e-grid .e-icon-gdownarrow, 
+.tableau-syncfusion-cob.e-grid .e-icon-grightarrow {
+    text-indent: 5px !important;
+}
+
+.tableau-syncfusion-cob.e-grid .e-icon-gdownarrow {
+    color: var(--color-rouge) !important;
+}
+
+.tableau-syncfusion-cob.e-grid .e-detailcell .e-headercontent,
+.tableau-syncfusion-cob.e-grid .e-detailcell .e-grid {
+    border: none;
+}
+
+.tableau-syncfusion-cob.e-grid .e-detailcell .e-gridheader {
+    border: none;
+}
+
+.tableau-syncfusion-cob.e-pivotview .e-frozen-left-header,
+.tableau-syncfusion-cob.e-pivotview .e-frozen-left-content {
+    width: 300px;
+}
+
+    .tableau-syncfusion-cob.e-pivotview .e-frozen-left-header table,
+    .tableau-syncfusion-cob.e-pivotview .e-frozen-left-content table {
+        width: 100% !important;
+    }
+
+.tableau-syncfusion-cob.e-grid.e-responsive .e-rowcell ul,
+.tableau-syncfusion-cob.e-pivotview .e-grid.e-responsive .e-rowcell ul {
+    list-style: circle;
+    text-align: left;
+    margin-top: 10px;
+    font-size: 1rem;
+    font-family: 'effra', 'Roboto', sans-serif;
+    color: rgba(0, 0, 0, .87);
+}
+
+.tableau-syncfusion-cob.e-grid.e-responsive .e-rowcell li,
+.tableau-syncfusion-cob.e-pivotview .e-grid.e-responsive .e-rowcell li {
+    margin: 5px 0;
+}
+
+.tableau-syncfusion-cob .e-emptyrow {
+    font-size: 1rem;
+    font-family: 'effra', 'Roboto', sans-serif;
+    text-align: center;
+}
+
+.tableau-syncfusion-cob.e-grid,
+.tableau-syncfusion-cob.e-pivotview .e-grid {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+    .tableau-syncfusion-cob.e-grid .e-toolbar button {
+        font-family: 'Roboto', sans-serif !important;
+        font-weight: 500 !important;
+        min-width: 199px !important;
+        width: auto !important;
+        background: var(--color-bleue) !important;
+        color: #fff !important;
+        border-radius: 5px !important;
+        font-size: 1.25rem !important;
+    }
+
+        .tableau-syncfusion-cob.e-grid .e-toolbar button .e-tbar-btn-text {
+            color: #fff !important;
+        }
+
+        .tableau-syncfusion-cob.e-grid .e-toolbar button .e-btn-icon {
+            color: #fff !important;
+        }
+
+    .tableau-syncfusion-cob.e-grid .e-toolbar {
+        height: 60px !important;
+    }
+
+    .tableau-syncfusion-cob.e-grid .e-gridheader .e-icons:not(.e-icon-hide):not(.e-check):not(.e-stop):not(.e-icon-reorderuparrow):not(.e-icon-reorderdownarrow) {
+        color: #fff !important;
+    }
+
+    .tableau-syncfusion-cob.e-grid .e-detailcell .e-gridheader .e-icons:not(.e-icon-hide):not(.e-check):not(.e-stop):not(.e-icon-reorderuparrow):not(.e-icon-reorderdownarrow) {
+        color: var(--color-anthracite) !important;
+    }
+
+    .tableau-syncfusion-cob.e-grid .e-filtered::before {
+        color: var(--color-bleue) !important;
+    }
+
+    .tableau-syncfusion-cob.e-grid .e-gridheader,
+    .tableau-syncfusion-cob.e-pivotview .e-grid .e-gridheader {
+        color: var(--color-bleue);
+    }
+
+    .tableau-syncfusion-cob.e-grid.e-responsive .e-rowcell,
+    .tableau-syncfusion-cob.e-grid.e-responsive .e-headercelldiv,
+    .tableau-syncfusion-cob.e-pivotview .e-grid.e-responsive .e-rowcell,
+    .tableau-syncfusion-cob.e-pivotview .e-grid.e-responsive .e-headercelldiv,
+    .tableau-syncfusion-cob .button-cta-reverse {
+        font-size: 1rem;
+        font-family: 'effra', 'Roboto', sans-serif;
+        text-align: center;
+    }
+
+    .tableau-syncfusion-cob.e-grid.e-responsive .e-detailcell .e-rowcell,
+    .tableau-syncfusion-cob.e-grid.e-responsive .e-detailcell .e-headercelldiv,
+    .tableau-syncfusion-cob.e-pivotview .e-grid.e-responsive .e-detailcell .e-rowcell,
+    .tableau-syncfusion-cob.e-pivotview .e-grid.e-responsive .e-detailcell .e-headercelldiv {
+        font-size: .9rem;
+        font-family: 'effra', 'Roboto', sans-serif;
+        text-align: center;
+    }
+
+    .tableau-syncfusion-cob.e-grid.e-responsive .e-rowcell {
+        height: 60px;
+    }
+
+        .tableau-syncfusion-cob.e-grid.e-responsive .e-rowcell a:not(.button-cta) {
+            color: var(--color-rouge) !important;
+            text-decoration: underline !important;
+        }
+
+            .tableau-syncfusion-cob.e-grid.e-responsive .e-rowcell a:not(.button-cta):hover,
+            .tableau-syncfusion-cob.e-grid.e-responsive .e-rowcell a:not(.button-cta):focus,
+            .tableau-syncfusion-cob.e-grid.e-responsive .e-rowcell a:not(.button-cta):active {
+                color: var(--color-rouge) !important;
+                text-decoration: none !important;
+            }
+
+    .tableau-syncfusion-cob.e-pivotview .e-grid.e-responsive .e-frozen-left-content .e-rowcell {
+        text-align: left;
+    }
+
+    .tableau-syncfusion-cob.e-grid .e-headercell,
+    .tableau-syncfusion-cob.e-grid .e-detailheadercell,
+    .tableau-syncfusion-cob.e-pivotview .e-grid .e-headercell,
+    .tableau-syncfusion-cob.e-pivotview .e-grid .e-detailheadercell,
+    .tableau-syncfusion-cob.e-pivotview .e-grid .e-headertext {
+        /*color: var(--color-gris);*/
+        height: 63px;
+        background: var(--color-bleue);
+        color: #fff;
+        font-size: 1rem;
+        vertical-align: middle !important;
+        padding: 0 21px 0 !important;
+    }
+
+    .tableau-syncfusion-cob.e-grid .e-detailcell .e-headercell,
+    .tableau-syncfusion-cob.e-grid .e-detailcell .e-detailheadercell,
+    .tableau-syncfusion-cob.e-pivotview .e-grid .e-detailcell .e-headercell,
+    .tableau-syncfusion-cob.e-pivotview .e-grid .e-detailcell .e-detailheadercell,
+    .tableau-syncfusion-cob.e-pivotview .e-grid .e-detailcell .e-headertext {
+        /*color: var(--color-gris);*/
+        height: 33px;
+        background: #ededed;
+        color: var(--color-anthracite);
+        font-size: 0.9rem;
+        vertical-align: middle !important;
+        padding: 0 21px 0 !important;
+    }
+
+        .tableau-syncfusion-cob.e-grid .e-headercell.e-stackedheadercell {
+            text-align: center !important;
+            text-transform: uppercase !important;
+        }
+
+        .tableau-syncfusion-cob.e-grid .e-headercell .e-headertext,
+        .tableau-syncfusion-cob.e-pivotview .e-grid .e-headercell .e-headertext {
+            /*font-weight: bold;*/
+            font-weight: 600;
+            text-transform: uppercase;
+        }
+
+    .tableau-syncfusion-cob.e-grid th.e-headercell[aria-sort=ascending] .e-headertext,
+    .tableau-syncfusion-cob.e-grid th.e-headercell[aria-sort=descending] .e-headertext,
+    .tableau-syncfusion-cob.e-grid th.e-headercell[aria-sort=ascending] .e-sortfilterdiv,
+    .tableau-syncfusion-cob.e-grid th.e-headercell[aria-sort=descending] .e-sortfilterdiv {
+        color: var(--color-rouge)
+    }
+
+    .tableau-syncfusion-cob.e-grid .e-detailcell .e-headercell .e-headertext,
+    .tableau-syncfusion-cob.e-pivotview .e-grid .e-detailcell .e-headercell .e-headertext {
+        /*font-weight: bold;*/
+        font-weight: 600;
+        text-transform: initial;
+    }
+
+    .tableau-syncfusion-cob.e-grid .e-row:not(.e-altrow),
+    .tableau-syncfusion-cob.e-pivotview .e-grid .e-row:not(.e-altrow) {
+        background-color: rgba(0,0,0,.05);
+    }
+
+    .tableau-syncfusion-cob.e-grid .e-detailcell .e-row,
+    .tableau-syncfusion-cob.e-pivotview .e-grid .e-detailcell .e-row {
+        background-color: #ededed;
+    }
+
+#TableUtilisateurStructure.tableau-syncfusion-cob.e-pivotview .e-grid td.e-active {
+    background-color: #fff;
+}
+
+    .tableau-syncfusion-cob.e-pivotview .e-grid .e-stackedheader {
+        background-color: var(--color-bleue);
+    }
+
+.tableau-syncfusion-cob.e-pivotview .e-rowsheader {
+    height: 49px;
+}
+
+.tableau-syncfusion-cob.e-pivotview .e-gridcontent .e-content {
+    height: auto !important;
+}
+
+.tableau-syncfusion-cob.e-pivotview .e-rowsheader .e-cellvalue {
+    font-size: 1rem;
+    font-family: 'effra', 'Roboto', sans-serif;
+    text-align: center;
+}
+
+.tableau-syncfusion-cob.e-grid .e-gridheader .e-sortfilter .e-headercelldiv,
+.tableau-syncfusion-cob.e-grid .e-gridheader .e-stackedheadercelldiv {
+    padding-right: 0 !important;
+}
+
+
+.tableau-syncfusion-cob .e-checkbox-wrapper .e-frame,
+.tableau-syncfusion-cob .e-css.e-checkbox-wrapper .e-frame {
+    width: 25px !important;
+    height: 25px !important;
+}
+
+.tableau-syncfusion-cob .e-checkbox-wrapper .e-check::before,
+.tableau-syncfusion-cob .e-css.e-checkbox-wrapper .e-check::before {
+    content: "";
+}
+
+.tableau-syncfusion-cob.e-grid .e-checkbox-wrapper .e-check::before,
+.tableau-syncfusion-cob.e-grid .e-css.e-checkbox-wrapper .e-check::before {
+    font: var(--fa-font-solid);
+    content: "\f00c";
+    font-size: 16px;
+}
+
+.tableau-syncfusion-cob.e-grid .e-checkbox-wrapper .e-stop::before,
+.tableau-syncfusion-cob.e-grid .e-css.e-checkbox-wrapper .e-stop::before {
+    line-height: 1.8;
+}
+
+.e-radio:checked + label::before {
+    background-color: #fff !important;
+    border-color: var(--color-rouge) !important;
+}
+
+.e-radio:checked + label::after {
+    background-color: var(--color-rouge) !important;
+    color: var(--color-rouge) !important;
+}
+
+.e-checkbox-wrapper .e-frame.e-check,
+.e-css.e-checkbox-wrapper .e-frame.e-check {
+    background-color: var(--color-rouge) !important;
+}
+
+.e-btn.e-flat.e-primary,
+.e-css.e-btn.e-flat.e-primary {
+    color: var(--color-rouge) !important;
+}
+
+.e-btn.e-flat.e-primary:hover,
+.e-css.e-btn.e-flat.e-primary:hover {
+    background-color: rgba(177, 20, 36,0.04) !important;
+}
+
+.e-btn.e-flat.e-primary:focus,
+.e-css.e-btn.e-flat.e-primary:focus {
+    background-color: rgba(177, 20, 36,0.12) !important;
+}
+
+table tr .not-colspanned-1 {
+    border-right: none;
+}
+
+table tr .not-colspanned-2 {
+    border-left: none;
+}
+
+table tr .not-modifiable,
+table tr .not-colspanned-1 {
+    min-width: 300px;
+    position: sticky;
+    left: 0;
+    z-index: 1;
+}
+
+.tableau-syncfusion-cob .badge-producteur {
+}
+
+.tableau-syncfusion-cob .badge-negociant {
+}
+
+.tableau-syncfusion-cob .badge-courtier {
+}
+
+.tableau-syncfusion-cob .badge-autre {
+}
+/* ~~ FIN TABLEAUX SYNCFUSION ~~ */
+
+
+
+/* ~~ DATEPICKER SYNCFUSION ~~ */ /* To specify background color and border */
+span.e-input-group.e-time-wrapper {
+    width: 100% !important;
+    border: 1px solid var(--color-gris) !important;
+    border-radius: 0.25rem !important;
+    padding: 0 15px 0 15px !important;
+    font-size: 16px !important;
+    font-weight: 300 !important;
+    line-height: 1 !important;
+    color: var(--color-noire) !important;
+    font-family: 'effra', Arial, sans-serif, 'FontAwesome' !important;
+    min-height: 42px !important;
+}
+    span.e-input-group.e-time-wrapper:focus,
+    span.e-input-group.e-time-wrapper:active,
+    span.e-input-group.e-time-wrapper.e-input-focus {
+        border: 1px solid var(--color-rouge) !important;
+        color: var(--color-rouge) !important;
+    }
+
+.e-input-group:not(.e-float-icon-left):not(.e-float-input).e-input-focus::before,
+.e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input).e-input-focus::before {
+    width: 0 !important;
+    left: 0 !important;
+    content: none !important;
+}
+
+.e-input-group:not(.e-float-icon-left):not(.e-float-input).e-input-focus::after,
+.e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input).e-input-focus::after {
+    width: 0 !important;
+    right: 0 !important;
+    content: none !important;
+}
+
+.e-datetimepicker::selection,
+.e-datepicker::selection {
+    color: #fff !important;
+    background: var(--color-rouge) !important;
+}
+
+.e-date-wrapper span.e-input-group-icon.e-date-icon.e-icons {
+    color: var(--color-anthracite) !important;
+    height: 24px !important;
+}
+
+    .e-date-wrapper span.e-input-group-icon.e-date-icon.e-icons.e-active {
+        color: var(--color-rouge) !important;
+    }
+
+.e-calendar .e-btn.e-today.e-flat.e-primary, .e-calendar .e-css.e-btn.e-today.e-flat.e-primary {
+    background-color: var(--color-rouge) !important;
+    border-color: var(--color-rouge) !important;
+    color: #fff !important;
+}
+
+.e-calendar .e-content td.e-focused-date.e-today span.e-day,
+.e-calendar .e-selected span.e-day {
+    background-color: var(--color-rouge) !important;
+    color: #fff !important;
+    border-color: var(--color-rouge) !important;
+}
+
+.e-calendar .e-content td:hover span.e-day,
+.e-calendar .e-content td:focus span.e-day,
+.e-bigger.e-small .e-calendar .e-content td:hover span.e-day,
+.e-bigger.e-small .e-calendar .e-content td:focus span.e-day {
+    background-color: var(--color-rouge) !important;
+    border: 1px solid !important;
+    color: #fff !important;
+}
+
+.datepicker-syncfusion-flk .e-date-wrapper {
+    width: 100%;
+    height: 42px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: start !important;
+    border: 1px solid var(--color-gris) !important;
+    padding: 10px 15px !important;
+    font-size: 16px !important;
+    font-weight: 300 !important;
+    line-height: 1 !important;
+    color: var(--color-anthracite) !important;
+    font-family: inherit !important;
+    -ms-border-radius: 4px !important;
+    border-radius: 4px !important;
+    position: relative !important;
+    margin: 0 !important;
+    background: var(--color-blanche) !important;
+}
+
+.label-datepicker-focused,
+.label-textarea-focused {
+    color: var(--color-rouge) !important;
+}
+
+    .datepicker-syncfusion-flk .e-date-wrapper input {
+        font-family: 'Roboto', sans-serif !important;
+        font-style: normal !important;
+        font-weight: 400 !important;
+        font-size: 15px !important;
+        line-height: 18px !important;
+        letter-spacing: 0.01em !important;
+        color: var(--color-anthracite) !important;
+    }
+
+    .datepicker-syncfusion-flk .e-date-wrapper.e-input-focus {
+        border: 1px solid var(--color-rouge) !important;
+    }
+
+    .datepicker-syncfusion-flk .e-date-wrapper .e-float-text {
+        font-size: 14px !important;
+        top: 0 !important;
+        background: #fff !important;
+        color: var(--color-rouge) !important;
+        padding: 0 5px !important;
+        left: 15px !important;
+        display: inline !important;
+        width: intrinsic !important; /* Safari/WebKit uses a non-standard name */
+        width: -moz-max-content !important; /* Firefox/Gecko */
+        width: -webkit-max-content !important; /* Chrome */
+        margin: 0 !important;
+    }
+
+.datepicker-syncfusion-flk .e-float-input.e-input-group.e-control-wrapper:not(.e-float-icon-left).e-error .e-float-line::before,
+.datepicker-syncfusion-flk .e-float-input.e-input-group:not(.e-float-icon-left) .e-float-line::before,
+.datepicker-syncfusion-flk .e-float-input.e-control-wrapper.e-input-group:not(.e-float-icon-left) .e-float-line::before,
+.datepicker-syncfusion-flk .e-float-input.e-input-group.e-control-wrapper:not(.e-float-icon-left).e-error .e-float-line::after,
+.datepicker-syncfusion-flk .e-float-input.e-input-group:not(.e-float-icon-left) .e-float-line::after,
+.datepicker-syncfusion-flk .e-float-input.e-control-wrapper.e-input-group:not(.e-float-icon-left) .e-float-line::after {
+    background: transparent;
+}
+/* ~~ FIN DATEPICKER SYNCFUSION ~~ */
+
+/* ~~ SCHEDULE*/
+.e-schedule .e-popup-content {
+    padding: 0 18px 28px 28px;
+}
+.quick-info-header {
+    background-color: white;
+    padding: 8px 18px 0 18px;
+}
+
+.quick-info-header-content {
+    justify-content: flex-end;
+    display: flex;
+    flex-direction: column;
+    padding: 5px 10px 5px;
+}
+
+.quick-info-title {
+    font-weight: 500;
+    font-size: 16px;
+    letter-spacing: 0.48px;
+    height: 22px;
+}
+
+.duration-text {
+    font-size: 11px;
+    letter-spacing: 0.33px;
+    height: 14px;
+}
+
+.content-area {
+    padding: 10px;
+    width: auto;
+}
+
+.meeting-type-wrap,
+.meeting-subject-wrap,
+.notes-wrap {
+    font-size: 11px;
+    color: #666;
+    letter-spacing: 0.33px;
+    height: 24px;
+    padding: 5px 0;
+}
+
+.event-content div label {
+    display: inline-block;
+    min-width: 45px;
+    color: #666;
+}
+
+.event-content div span {
+    font-size: 11px;
+    color: #151515;
+    letter-spacing: 0.33px;
+    line-height: 14px;
+    padding-left: 8px;
+}
+
+.cell-footer.e-btn {
+    background-color: #ffffff;
+    border-color: #878787;
+    color: #878787;
+}
+
+.cell-footer {
+    padding-top: 10px;
+}
+
+.e-quick-popup-wrapper .e-cell-popup .e-popup-content {
+    padding: 0 14px !important;
+}
+
+.e-quick-popup-wrapper .e-event-popup .e-popup-footer {
+    display: block;
+}
+
+.e-quick-popup-wrapper .e-popup-footer button:first-child {
+    margin-right: 5px;
+}
+
+.bootstrap-dark .quick-info-header,
+.fabric-dark .quick-info-header {
+    background-color: #1a1a1a;
+}
+
+.material-dark .quick-info-header {
+    background-color: #424242;
+}
+
+.highcontrast .quick-info-header,
+.tailwind-dark .quick-info-header,
+.bootstrap-dark .quick-info-header,
+.bootstrap5-dark .quick-info-header,
+.fluent-dark .quick-info-header,
+.fabric-dark .quick-info-header {
+    background-color: transparent;
+}
+
+.tailwind-dark .quick-info-header-content,
+.bootstrap-dark .quick-info-header-content,
+.fabric-dark .quick-info-header-content,
+.material-dark .quick-info-header-content,
+.highcontrast .quick-info-header-content {
+    color: #fff !important;
+}
+
+.tailwind-dark .event-content div label,
+.tailwind-dark .event-content div span,
+.bootstrap-dark .event-content div label,
+.bootstrap-dark .event-content div span,
+.bootstrap5-dark .event-content div label,
+.bootstrap5-dark .event-content div span,
+.fluent-dark .event-content div label,
+.fluent-dark .event-content div span,
+.fabric-dark .event-content div label,
+.fabric-dark .event-content div span,
+.material-dark .event-content div label,
+.material-dark .event-content div span,
+.highcontrast .event-content div label,
+.highcontrast .event-content div span {
+    color: #fff;
+}
+
+.material .e-quick-popup-wrapper .e-popup-footer {
+    display: block !important;
+    padding: 0px 18px 8px 22px !important;
+}
+
+.e-schedule .e-vertical-view .e-content-wrap .e-appointment,
+.e-schedule .e-timeline-view .e-content-wrap .e-appointment {
+    border-radius: 5px !important;
+    padding: 0;
+}
+
+    .e-schedule .e-vertical-view .e-content-wrap .e-appointment .e-appointment-details {
+        padding: 0 !important;
+        height: 100%;
+        width: 100%;
+    }
+
+.e-schedule .template-wrap {
+    height: 100%;
+    white-space: normal;
+    width: 100%;
+}
+
+    .e-schedule .template-wrap .image {
+        padding: 0 0 4px;
+    }
+
+        .e-schedule .template-wrap .image img {
+            height: 100px;
+            width: 100%;
+            padding: 10px 25%;
+        }
+
+    .e-schedule .template-wrap .subject {
+        font-weight: 600;
+        font-size: 15px;
+        padding: 4px 4px 4px;
+        height: 25px;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        overflow: hidden;
+    }
+
+    .e-schedule .template-wrap .time {
+        height: 50px;
+    }
+
+    .e-schedule .template-wrap .time,
+    .e-schedule .template-wrap .description {
+        font-size: 12px;
+        padding: 4px 6px 4px;
+        overflow: hidden;
+    }
+
+@@media only screen and (max-width: 360px) {
+    .e-schedule .e-vertical-view .e-content-wrap .e-appointment {
+        border-radius: 2px;
+    }
+
+    .e-schedule .template-wrap .image img {
+        height: 50px;
+    }
+
+    .e-schedule .template-wrap .tags {
+        display: none;
+    }
+}
+
+.e-schedule .e-timeline-view .e-appointment .e-appointment-details {
+    padding: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.e-schedule .e-timeline-view .template-wrap {
+    width: 100%;
+}
+
+    .e-schedule .e-timeline-view .template-wrap .subject {
+        font-size: 16px;
+        height: 36px;
+        text-align: center;
+    }
+
+.e-bigger .e-more-popup-wrapper .e-appointment,
+.e-more-popup-wrapper .e-appointment {
+    padding: 0 !important;
+}
+
+.evenement_schedule_flk {
+    padding: 10px;
+}
+
+    .evenement_schedule_flk.journee_vide {
+        background-color: #5086C7;
+    }
+
+    .evenement_schedule_flk.journee_en_cours {
+        background-color: #123E4E;
+    }
+
+    .evenement_schedule_flk.journee_pleine {
+        background-color: #D8657E;
+    }
+
+    .evenement_schedule_flk.journee_inscrit {
+        background-color: #F1B94F;
+    }
+
+    .evenement_schedule_flk.journee_echue {
+        background-color: #C6D6E9;
+    }
+
+    .evenement_schedule_flk.journee_excusee {
+        background-color: #3D18BA;
+    }
+
+    .evenement_schedule_flk .titre_prospection {
+        font-family: 'rogue-serif';
+        font-size: 18px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .evenement_schedule_flk .date_prospection,
+    .evenement_schedule_flk .ville_prospection {
+        font-family: 'effra';
+        font-size: 15px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+.quick-info-title {
+    font-family: 'rogue-serif', sans-serif;
+    font-size: 18px;
+    letter-spacing: normal;
+    line-height: 1.2;
+    color: var(--color-bleue);
+}
+
+    .quick-info-title a {
+        color: var(--color-rouge);
+    }
+
+.duration-text {
+    letter-spacing: normal;
+    font-family: 'effra', sans-serif;
+    font-size: 14px;
+    line-height: 1.2;
+    color: var(--color-bleue);
+}
+
+.event-content {
+    font-family: 'effra', sans-serif;
+    letter-spacing: normal;
+    color: var(--color-bleue);
+}
+
+    .event-content .meeting-type-wrap label,
+    .event-content .meeting-type-wrap span,
+    .event-content .notes-wrap label,
+    .event-content .notes-wrap span {
+        font-family: 'effra', sans-serif;
+        letter-spacing: normal;
+        line-height: 1.2;
+        font-size: 13px;
+        min-width: 0;
+        color: var(--color-bleue);
+    }
+
+        .event-content .meeting-type-wrap label
+        .event-content .notes-wrap label {
+            font-weight: 500;
+        }
+
+/* ## Fin Schedule ## */
+
+/* ## DateTimePicker Syncfusion ## */
+
+
+/* ~~ DATEPICKER SYNCFUSION ~~ */ /* To specify background color and border */
+.datepicker-syncfusion-flk .e-datetime-wrapper {
+    width: 100% !important;
+    height: 100% !important;
+    padding: 5px 15px 5px 15px !important;
+    font-size: 16px !important;
+    font-weight: 300 !important;
+    line-height: 1 !important;
+    color: var(--color-bleue) !important;
+    border: 1px solid var(--color-bleue) !important;
+    background: var(--bg-blanc) !important;
+    border-radius: 0.25rem !important;
+}
+    .datepicker-syncfusion-flk .e-datetime-wrapper input {
+        font-size: 16px !important;
+        padding: 0 !important;
+        font-family: 'effra', sans-serif !important;
+    }
+
+.e-input-group:not(.e-float-icon-left):not(.e-float-input).e-input-focus::before,
+.e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input).e-input-focus::before {
+    width: 0 !important;
+    left: 0 !important;
+    content: none !important;
+}
+
+.e-input-group:not(.e-float-icon-left):not(.e-float-input).e-input-focus::after,
+.e-input-group.e-control-wrapper:not(.e-float-icon-left):not(.e-float-input).e-input-focus::after {
+    width: 0 !important;
+    right: 0 !important;
+    content: none !important;
+}
+
+.e-datetimepicker::selection,
+.e-datepicker::selection {
+    color: #fff !important;
+    background: var(--color-rouge) !important;
+}
+
+.e-date-wrapper span.e-input-group-icon.e-date-icon.e-icons {
+    color: #272727 !important;
+    height: 24px !important;
+}
+
+    .e-date-wrapper span.e-input-group-icon.e-date-icon.e-icons.e-active {
+        color: var(--color-rouge) !important;
+    }
+
+.e-calendar .e-btn.e-today.e-flat.e-primary, .e-calendar .e-css.e-btn.e-today.e-flat.e-primary {
+    background-color: var(--color-rouge) !important;
+    border-color: var(--color-rouge) !important;
+    color: #fff !important;
+}
+
+.e-calendar .e-content td.e-focused-date.e-today span.e-day,
+.e-calendar .e-selected span.e-day {
+    background-color: var(--color-rouge) !important;
+    color: #fff !important;
+    border-color: var(--color-rouge) !important;
+}
+
+.e-calendar .e-content td:hover span.e-day,
+.e-calendar .e-content td:focus span.e-day,
+.e-bigger.e-small .e-calendar .e-content td:hover span.e-day,
+.e-bigger.e-small .e-calendar .e-content td:focus span.e-day {
+    background-color: var(--color-rouge) !important;
+    border: 1px solid !important;
+    color: #fff !important;
+}
+
+.datepicker-syncfusion-flk .e-date-wrapper {
+    width: 100%;
+    height: 45px;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: start !important;
+    border: 1px solid #D1D1D6 !important;
+    padding: 10px 15px !important;
+    font-size: 16px !important;
+    font-weight: 300 !important;
+    line-height: 1 !important;
+    color: #272727 !important;
+    font-family: inherit !important;
+    -ms-border-radius: 10px !important;
+    border-radius: 10px !important;
+    position: relative !important;
+    margin: 0 !important;
+}
+
+    .datepicker-syncfusion-flk .e-date-wrapper input {
+        font-family: 'Roboto', sans-serif !important;
+        font-style: normal !important;
+        font-weight: 400 !important;
+        font-size: 15px !important;
+        line-height: 18px !important;
+        letter-spacing: 0.01em !important;
+        color: #272727 !important;
+    }
+
+    .datepicker-syncfusion-flk .e-date-wrapper.e-input-focus {
+        border: 1px solid var(--color-rouge) !important;
+    }
+
+    .datepicker-syncfusion-flk .e-date-wrapper .e-float-text {
+        font-size: 14px !important;
+        top: 0 !important;
+        background: #fff !important;
+        color: var(--color-rouge) !important;
+        padding: 0 5px !important;
+        left: 15px !important;
+        display: inline !important;
+        width: intrinsic !important; /* Safari/WebKit uses a non-standard name */
+        width: -moz-max-content !important; /* Firefox/Gecko */
+        width: -webkit-max-content !important; /* Chrome */
+        margin: 0 !important;
+    }
+
+.datepicker-syncfusion-flk .e-float-input.e-input-group.e-control-wrapper:not(.e-float-icon-left).e-error .e-float-line::before,
+.datepicker-syncfusion-flk .e-float-input.e-input-group:not(.e-float-icon-left) .e-float-line::before,
+.datepicker-syncfusion-flk .e-float-input.e-control-wrapper.e-input-group:not(.e-float-icon-left) .e-float-line::before,
+.datepicker-syncfusion-flk .e-float-input.e-input-group.e-control-wrapper:not(.e-float-icon-left).e-error .e-float-line::after,
+.datepicker-syncfusion-flk .e-float-input.e-input-group:not(.e-float-icon-left) .e-float-line::after,
+.datepicker-syncfusion-flk .e-float-input.e-control-wrapper.e-input-group:not(.e-float-icon-left) .e-float-line::after {
+    background: transparent;
+}
+/* ~~ FIN DATEPICKER SYNCFUSION ~~ */
+/* ## Fin dateTimePicker Syncfusion ## */
+
+/* ## Switch Syncfusion ## */
+.e-switch-wrapper .e-switch-handle.e-switch-active,
+.e-css.e-switch-wrapper .e-switch-handle.e-switch-active {
+    background-color: var(--color-rouge) !important;
+}
+.e-switch-wrapper:hover .e-switch-handle.e-switch-active,
+.e-css.e-switch-wrapper:hover .e-switch-handle.e-switch-active {
+    background: var(--color-rouge) !important;
+}
+.e-switch-wrapper .e-switch-on, .e-css.e-switch-wrapper .e-switch-on {
+    background-color: var(--color-rouge) !important;
+}
+/* ## Fin Switch Syncfusion ## */

@@ -1,1 +1,6 @@
-﻿
+﻿@{
+    ViewData["Title"] = "Bienvenu chez Celia";
+    var isLoggedIn = Context.User?.Identity?.IsAuthenticated ?? false;
+    Layout = isLoggedIn ? "~/Views/Shared/_Layout.cshtml" : "~/Views/Shared/_LayoutEmpty.cshtml";
+    var timestamp = DateTime.Now.ToString("yyyyMMddHHmmssfff");
+}
