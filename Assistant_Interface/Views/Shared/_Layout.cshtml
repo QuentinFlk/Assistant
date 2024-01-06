@@ -3,6 +3,7 @@
 
 @{
     var timestamp = DateTime.Now.ToString("yyyyMMddHHmmssfff");
+    var isLoggedIn = Context.User?.Identity?.IsAuthenticated ?? false;
 }
 <!DOCTYPE html>
 <html lang="en">
@@ -44,7 +45,7 @@
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Assistant_Interface</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Accueil">CELIA</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -58,68 +59,72 @@
     <div class="container-fluid body-content body-container" style="overflow: auto; min-height: 800px;">
         @RenderBody()
     </div>
-    <!-- Sidebar ADMIN -->
-    <div class="sidebar">
-        <button class="btn update-button" id="arrow-open-sidebar-admin"><i class="fa fa-cogs mr-2"></i>Administration</button>
-        <button class="btn" id="cross-open-sidebar-admin"><i class="fas fa-times"></i></button>
-        <!--menu item-->
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-12">
-                    <p class="soustitre-section px-0 mb-0">Administration</p>
-                </div>
-                <div class="col-12">
-                    <div class="accordion-cob" id="accordionAdministration">
-                        <!-- ~~ SECTION PROSPECTION ~~ -->
-                        @* <div class="card pt-3">
-                            <div class="card-header p-0" id="headingSynthese">
-                                <h5 class="mb-0">
-                                    <button class="btn btn-link  text-left w-100 label-alone" type="button" data-toggle="collapse" data-target="#collapseProspection" aria-expanded="true" aria-controls="Prospections">
-                                        Prospections
-                                    </button>
-                                </h5>
-                            </div>
-                            <div id="collapseProspection" class="collapse show" aria-labelledby="headingParams" data-parent="#accordionAdministration">
-                                <div class="card-body p-0">
-                                    <div class="container-fluid py-0">
-                                        <div class="row">
-                                            <div class="col-6 py-3">
-                                                <a href="@Url.Action("Index", "GestionJourneeProspection")">
-                                                    <div class="tile-admin">
-                                                        <i class="fa-solid fa-table"></i>
-                                                        <label class="mb-0 pt-2">Gestion des journées de prospection</label>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-6 py-3">
-                                                <a href="@Url.Action("Index", "GestionProspectionOperateur")">
-                                                    <div class="tile-admin">
-                                                        <i class="fa-solid fa-calendar-alt"></i>
-                                                        <label class="mb-0 pt-2">Gestion des prospections opérateur</label>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                            <div class="col-6 py-3">
-                                                <a href="@Url.Action("Index", "ListeOperateur")">
-                                                    <div class="tile-admin">
-                                                        <i class="fa-solid fa-address-book"></i>
-                                                        <label class="mb-0 pt-2">Liste des opérateurs</label>
-                                                    </div>
-                                                </a>
+    @if (isLoggedIn)
+    {
+        <!-- Sidebar ADMIN -->
+        <div class="sidebar">
+            <button class="btn update-button" id="arrow-open-sidebar-admin"><i class="fa fa-cogs mr-2"></i>Administration</button>
+            <button class="btn" id="cross-open-sidebar-admin"><i class="fas fa-times"></i></button>
+            <!--menu item-->
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <p class="soustitre-section px-0 mb-0">Administration</p>
+                    </div>
+                    <div class="col-12">
+                        <div class="accordion-cob" id="accordionAdministration">
+                            <!-- ~~ SECTION PROSPECTION ~~ -->
+                            <div class="card pt-3">
+                                <div class="card-header p-0" id="headingSynthese">
+                                    <h5 class="mb-0">
+                                        <button class="btn btn-link  text-left w-100 label-alone" type="button" data-toggle="collapse" data-target="#collapseProspection" aria-expanded="true" aria-controls="Prospections">
+                                            Prospections
+                                        </button>
+                                    </h5>
+                                </div>
+                                <div id="collapseProspection" class="collapse show" aria-labelledby="headingParams" data-parent="#accordionAdministration">
+                                    <div class="card-body p-0">
+                                        <div class="container-fluid py-0">
+                                            <div class="row">
+                                                <div class="col-6 py-3">
+                                                    <a href="@Url.Action("Index", "GestionAssistant")">
+                                                        <div class="tile-admin">
+                                                            <i class="fa-solid fa-calendar-alt"></i>
+                                                            <label class="mb-0 pt-2">Gestion des Assistants</label>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                <div class="col-6 py-3">
+                                                    <a href="@Url.Action("Index", "AjoutAssistant")">
+                                                        <div class="tile-admin">
+                                                            <i class="fa-solid fa-plus"></i>
+                                                            <label class="mb-0 pt-2">Ajouter un Assistant</label>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                @* <div class="col-6 py-3">
+                                                    <a href="@Url.Action("Index", "ListeOperateur")">
+                                                        <div class="tile-admin">
+                                                            <i class="fa-solid fa-address-book"></i>
+                                                            <label class="mb-0 pt-2">Liste des opérateurs</label>
+                                                        </div>
+                                                    </a>
+                                                </div> *@
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div> *@
-                        <!-- ~~~~ -->
+                            <!-- ~~~~ -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="overlay-sidebar"></div>
-    <!-- FIN Sidebar ADMIN -->
+        <div class="overlay-sidebar"></div>
+        <!-- FIN Sidebar ADMIN -->
+    }
+
     <footer class="border-top footer text-muted">
         <div class="container">
             &copy; @DateTime.Today.Year - FLK
