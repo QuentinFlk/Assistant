@@ -3,7 +3,7 @@
 @model Assistant_Interface.Models.ViewModels.AccueilViewModel
 
 @{
-    ViewData["Title"] = "Bienvenu chez Celia";
+    ViewData["Title"] = "Bienvenue";
     var isLoggedIn = Context.User?.Identity?.IsAuthenticated ?? false;
     Layout = isLoggedIn ? "~/Views/Shared/_Layout.cshtml" : "~/Views/Shared/_LayoutEmpty.cshtml";
     var timestamp = DateTime.Now.ToString("yyyyMMddHHmmssfff");

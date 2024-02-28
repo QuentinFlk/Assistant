@@ -85,7 +85,22 @@
                                 <div class="col-4">
                                 </div>
                                 <div class="col-4">
-                                    <input type="button" class="btn button-cta valide-button fa-input" id="ajout-assistant" disabled="disabled" value="&#xf0c7;&nbsp;&nbsp;Ajouter l'Assistant" />
+                                    <div class="textarea-div position-relative" style="height: 100%">
+                                        @Html.LabelFor(_ => Model.TagAssistant, new { @class = "d-block label-alone-dropdownlist" })
+                                        @Html.TextAreaFor(_ => Model.TagAssistant, new { @type = "text", @id = "tagAssistant", @class = "form-control input-form w-100", @style = "min-height: 100px", @disabled = "disabled" })
+                                        @Html.ValidationMessageFor(x => Model.TagAssistant, "", new { @class = "text-danger d-none" })
+                                    </div>
+                                </div>
+                                <div class="col-2">
+                                </div>
+                                <div class="col-12 my-2">
+                                    <!-- vide pour mise en page -->
+                                </div>
+                                <div class="col-4">
+                                </div>
+                                <div class="col-4">
+                                    <input type="button" class="btn button-cta valide-button fa-input" id="tag-assistant" value="Trouver les tag de l'Assistant" />
+                                    <input type="button" class="btn button-cta valide-button fa-input" id="ajout-assistant" disabled="disabled" value="&#xf0c7;&nbsp;&nbsp;Ajouter l'Assistant"/>
                                 </div>
                             </div>
                         </div>

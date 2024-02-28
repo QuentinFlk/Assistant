@@ -22,6 +22,7 @@ namespace Assistant_Interface.Controllers.Administration
         private readonly AssistantContext _accessBddContext;
         private readonly IConfiguration _configuration;
         private readonly ApplicationDbContext _identityDbContext;
+        private string _threadId = "";
         protected Logger Logger = LogManager.Setup().LoadConfigurationFromAppSettings().GetCurrentClassLogger();
 
         public AjoutAssistantController(AssistantContext accessBddContext, IConfiguration configuration,
@@ -71,7 +72,7 @@ namespace Assistant_Interface.Controllers.Administration
                 var listModelDisponible = openaiApi.ModelsEndpoint.GetModelsAsync().Result.ToList();
                 var listModelGpt = listModelDisponible.Where(x => x.Id.StartsWith("gpt-") && !x.Id.Contains("vision")).ToList();
                 viewModel.SetModelDisponible(listModelGpt);
-
+                openaiApi.Dispose();
                 return View(viewModel);
             }
             catch (Exception ex)
@@ -83,19 +84,89 @@ namespace Assistant_Interface.Controllers.Administration
             }
         }
 
+        [HttpGet]
+        public async Task<JsonResult> GetTagForNewAssistant(string prompt)
+        {
+            var apiKey = _configuration.GetSection("OpenAi:api-key").Value;
+            var auth = new OpenAIAuthentication(apiKey);
+            var api = new OpenAIClient(auth);
+            try
+            {
+                if (string.IsNullOrEmpty(prompt))
+                    return new JsonResult("Merci de saisir un prompt.")
+                    { StatusCode = StatusCodes.Status400BadRequest };
+                Logger.Info("Appel de la méthode qui va appeler tag manager pour générer les tags de base.");
+                var tagManager = _configuration.GetSection("OpenAi:tag-manager").Value;
+                var assistant = await api.AssistantsEndpoint.RetrieveAssistantAsync(tagManager);
+                var listTag = new List<string>();
+
+                if (!string.IsNullOrEmpty(_threadId))
+                {
+                    var messageList = await api.ThreadsEndpoint.ListMessagesAsync(_threadId);
+                    foreach (var itemMessage in messageList.Items)
+                    {
+                        listTag.Add(itemMessage.PrintContent());
+                    }
+                }
+                else
+                {
+                    var thread = await api.ThreadsEndpoint.CreateThreadAsync();
+                    _threadId = thread.Id;
+                    await thread.CreateMessageAsync(prompt);
+                    var run = await thread.CreateRunAsync(assistant);
+                    Thread.Sleep(500);
+                    var runId = run.Id;
+                    Thread.Sleep(500);
+                    var listRunStep = await run.ListRunStepsAsync();
+
+                    foreach (var item in listRunStep.Items)
+                    {
+                        var runStep = await run.RetrieveRunStepAsync(item.Id);
+                        runStep = await runStep.UpdateAsync();
+                        while (runStep.Status != RunStatus.Completed)
+                        {
+                            runStep = await runStep.UpdateAsync();
+                        }
+
+                        var messageList = await api.ThreadsEndpoint.ListMessagesAsync(_threadId);
+                        foreach (var itemMessage in messageList.Items)
+                        {
+                            if (itemMessage.PrintContent().Equals(prompt))
+                                continue;
+                            listTag.Add(itemMessage.PrintContent());
+                        }
+                    }
+                }
+
+                api.Dispose();
+
+                return new JsonResult(listTag)
+                { StatusCode = StatusCodes.Status200OK };
+            }
+            catch (Exception ex)
+            {
+                api.Dispose();
+                Logger.Error(ex.Message);
+                Logger.Error(ex.InnerException);
+                Logger.Error(ex.StackTrace);
+                return new JsonResult(ex.Message)
+                { StatusCode = StatusCodes.Status400BadRequest };
+            }
+        }
+
         [HttpPost]
         public JsonResult AjoutAssistant([FromBody] AjoutAssistantViewModel dataAjoutAssistant)
         {
             var transaction = _accessBddContext.Database.BeginTransaction();
+            var apiKey = _configuration.GetSection("OpenAi:api-key").Value;
+            var api = new OpenAIClient(apiKey);
             try
             {
                 Logger.Info("Appel de la méthode pour ajouter l'assistant ayant pour nom {0}",
                     dataAjoutAssistant.NomAssistant);
-                var apiKey = _configuration.GetSection("OpenAi:api-key").Value;
-                var openaiApi = new OpenAIClient(apiKey);
                 var request = new CreateAssistantRequest(dataAjoutAssistant.ChoixModel, dataAjoutAssistant.NomAssistant,
                     dataAjoutAssistant.DescriptionAssistant, dataAjoutAssistant.InstructionAssistant);
-                var assistantOpenai = openaiApi.AssistantsEndpoint.CreateAssistantAsync(request).Result;
+                var assistantOpenai = api.AssistantsEndpoint.CreateAssistantAsync(request).Result;
                 var newAssistant = new Assistant
                 {
                     OpenAiAssisantId = assistantOpenai.Id,
@@ -111,18 +182,46 @@ namespace Assistant_Interface.Controllers.Administration
                 _accessBddContext.Assistant.Add(newAssistant);
                 _accessBddContext.SaveChanges();
 
+                if (dataAjoutAssistant.LisTagAssistant.Any())
+                {
+                    foreach (var tag in dataAjoutAssistant.LisTagAssistant)
+                    {
+                        var tagAssistant = new TagAssistant
+                        {
+                            IdAssistant = newAssistant.IdAssistant,
+                        };
+                        var tagExiste = _accessBddContext.Tag.FirstOrDefault(x => x.LibelleTag.Equals(tag));
+                        if (tagExiste == null)
+                        {
+                            var newTag = new Tag
+                            {
+                                LibelleTag = tag
+                            };
+                            _accessBddContext.Tag.Add(newTag);
+                            _accessBddContext.SaveChanges();
+
+                            tagAssistant.IdTag = newTag.IdTag;
+                        }
+                        else
+                            tagAssistant.IdTag = tagExiste.IdTag;
+                        _accessBddContext.TagAssistant.Add(tagAssistant);
+                    }
+
+                    _accessBddContext.SaveChanges();
+                }
+
                 transaction.Commit();
                 transaction.Dispose();
 
-                var respFormat =
-                    new JsonResult(
+                api.Dispose();
+                return new JsonResult(
                             "L'assistant a correctement été créé, vous allez être redirigé vers la page de configuration._" +
                             newAssistant.IdAssistant)
-                    { StatusCode = StatusCodes.Status200OK };
-                return respFormat;
+                { StatusCode = StatusCodes.Status200OK };
             }
             catch (Exception ex)
             {
+                api.Dispose();
                 transaction.Rollback();
                 transaction.Dispose();
                 Logger.Error(ex.Message);
@@ -132,6 +231,12 @@ namespace Assistant_Interface.Controllers.Administration
                 { StatusCode = StatusCodes.Status400BadRequest };
                 return respFormat;
             }
+        }
+
+        private class TagOpenAi
+        {
+            [JsonProperty("tags")]
+            public List<string> Tags { get; set; }
         }
     }
 }
